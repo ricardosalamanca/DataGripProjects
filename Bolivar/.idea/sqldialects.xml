@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_DESA/API_VICTORIA.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_DESA/FacturaElectronica.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_DESA/analisisDigital.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_DESA/desa_Sai_incidentes.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_DESA/migracionPSEbotonPagos.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_DESA/provisionPrimas.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_TEST/analisisDigital.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_TEST/provisionPrimas.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/SAI19C_TEST/test_sai_incidentes.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_DESA/AgroCacaoTranqRural.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_DESA/CumplientoCasoGallagher.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_DESA/CumplimientoIncidentes.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_DESA/CumplimientoReq.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_DESA/CumplimientoReqEndosos.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_DESA/SAITRONA.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_DESA/miPymes.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_TEST/CumplientoCasoGallagher.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_TEST/CumplimientoIncidentes.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_TEST/CumplimientoReq.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_TEST/CumplimientoReqEndosos.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_TEST/SAITRONA.sql" dialect="Oracle" />
+    <file url="file://$PROJECT_DIR$/consoles/db/TRONADOR_TEST/miPymes.sql" dialect="Oracle" />
+  </component>
+</project>

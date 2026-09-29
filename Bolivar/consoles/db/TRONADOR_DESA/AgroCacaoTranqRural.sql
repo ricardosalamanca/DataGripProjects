@@ -1,0 +1,1049 @@
+select * from g2000020
+where cod_ramo in (605, 602) AND COD_CAMPO LIKE '%ASEG%';
+
+SELECT * FROM SIM_G2000020 where cod_ramo in (605) AND componente = 'CO';
+
+select t.cod_cia,
+       t.cod_ramo,
+       t.num_secu,
+       t.cod_campo,
+       g.txt_titulo,
+       t.cod_nivel,
+       g.txt_help,
+       g.TIPO_CAMPO,
+       g.LONG_CAMPO,
+       g.COD_TIPO_DATO,
+       T.*
+from G2000020 t, G2000010 g
+where t.cod_cia = g.cod_cia
+  and t.cod_campo = g.cod_campo
+  and t.cod_cia = 3
+  and t.cod_ramo = 605;
+
+SELECT a.num_pol1
+     , a.NRO_DOCUMTO
+     , a.num_end
+     , a.num_secu_pol
+     , a.FECHA_EMI
+     , a.FECHA_EMI_END
+     , a.fecha_venc_pol
+     , a.fecha_venc_end
+     , a.cod_ramo
+     , a.RENOVADA_POR
+     , a.MCA_RENOV
+     , a.NUM_POL_ANT
+     , a.*
+FROM a2000030 a
+WHERE a.cod_cia = 3
+  AND a.cod_secc = 39
+  AND a.cod_ramo = 605
+  AND a.num_end =
+      (select max(w.num_end)
+       from a2000030 w
+       where w.num_secu_pol = a.num_secu_pol)
+  AND nvl(a.mca_provisorio, 'N') = 'N'
+  and NVL(a.mca_anu_pol, 'N') != 'S'
+  --AND a.num_pol_ant is null
+  AND nvl(a.mca_caduca, 'N') = 'N'
+  AND nvl(a.mca_term_ok, 'N') = 'S'
+  AND num_pol1 <> 0
+  and NRO_DOCUMTO not in (900258841);
+2024-04-23
+
+UPDATE OPS$PUMA.A2000030
+SET FECHA_EMI_END = TO_DATE('2024-08-05', 'YYYY-MM-DD HH24:MI:SS')
+where NUM_POL1 = 1010000009601
+  AND NRO_DOCUMTO = 900614125
+  AND NUM_END = 1
+  AND NUM_SECU_POL = 29803832775;
+
+select  a.num_pol1
+     , a.NRO_DOCUMTO
+     , a.num_end
+     , a.num_secu_pol
+     , a.FECHA_EMI
+     , a.FECHA_EMI_END
+     , a.fecha_venc_pol
+     , a.fecha_venc_end
+     , a.cod_ramo
+     , a.RENOVADA_POR
+     , a.MCA_RENOV
+     , a.NUM_POL_ANT
+     , a.*
+from a2000030 a
+where COD_SECC = 39
+  and COD_RAMO in (602, 605)
+  and num_pol1 = 5132005110801;
+
+
+SELECT * FROM SIM_G2000020 where COMPONENTE = 'CO' AND COD_LISTA like '%:%' ;
+
+select * from G7000026 t where t.cod_campo = 'ACTIVIDAD_REG';
+
+Select *
+from sim_g2000020
+where cod_cia = 3
+  and cod_campo in (select cod_campo from g2000020 where cod_ramo = 690)
+  and componente != 'TX'
+order by cod_campo;
+
+select * from G7000026 t where t.cod_campo = 'TIPO_RIES';
+
+select * from G7000026 t where t.cod_campo = 'CLASE_APORTAN';
+
+select *  from C9999909 WHERE  COD_TAB  = 'AGRICOLA_RANGOLISTAS' and COD_CAMPO = 'TIPO_PRODUCTOR';
+/*
+DELETE G2000010 where COD_CIA = 3 and cod_campo in ('TIPO_PROD_AGRO');
+INSERT INTO G2000010 (COD_CIA, COD_CAMPO, TXT_TITULO, LONG_CAMPO, TIPO_CAMPO, COD_NIVEL_SIST, COD_TIPO_DATO, COD_USER,
+                      ACEPTA_NULL, OBLIGATORIO, TXT_HELP, MCA_DENUNCIA)
+VALUES (3, 'TIPO_PROD_AGRO', 'TIPO DE PRODUCTO AGRO', 3, 'N', '2', '1', 'b1030598', 'N', 'S',
+        'INDIQUE TIPO PRODUCTO 1:TRANQUILIDAD RURAL 2:CACAO', 'N');
+ */
+SELECT * FROM  G2000010 WHERE COD_CAMPO in ('TIPO_PROD_AGRO','TIPO_PRODUCTOR');
+/*
+DELETE G2000020 where COD_CIA = 3 and COD_RAMO = 605 and cod_campo in ('TIPO_PROD_AGRO');
+INSERT INTO G2000020 (COD_CIA, COD_RAMO, NUM_SECU, COD_CAMPO, COD_NIVEL, MCA_PPTO, ACEPTA_NULL,
+                      MCA_VISIBLE, LISTA_VALORES, VALOR_DEFECTO,
+                       OBLIGATORIO, COD_USR, TXT_HELP, MCA_PPAL, MCA_REASEGURO)
+VALUES (3, 605, 65, 'TIPO_PROD_AGRO', 1, 'N', 'N', 'S', '1-TRANQUILIDAD RURAL / 2- CACAO', '1',
+        'S', 'b1030598', 'INDIQUE TIPO PRODUCTO 1:TRANQUILIDAD RURAL 2:CACAO', 'N', 'N');
+ */
+
+SELECT * FROM  G2000020 WHERE COD_CAMPO = 'TIPO_PROD_AGRO';
+
+select c.* from CREGLAS c where cdreg in ('999GWV002');
+
+SELECT *
+FROM g9001100
+WHERE  COD_USR LIKE 'B1030596%';
+
+SELECT *
+FROM g9001100
+WHERE  COD_USR LIKE 'B8085964%';
+
+SELECT * FROM G2000020 where  LISTA_VALORES IS NOT NULL ;
+
+SELECT * FROM SIM_G2000020 where COD_CAMPO = 'CLASE_APORTAN'
+
+/*
+DELETE sim_g2000020 where cod_ramo in (605)and cod_campo in ('TIPO_PROD_AGRO');
+INSERT INTO SIM_G2000020 (COD_CIA, COD_RAMO, COD_CAMPO, CATEGORIA, ORDEN_CATEGORIA, NIVEL, COMPONENTE, TITULO,
+                          COD_LISTA, FECHA_CREACION, FECHA_ALTA,
+                          USUARIO_CREACION, ESTADO, NUM_SECU, LISTA_DEPENDIENTE)
+VALUES (3, 605, 'TIPO_PROD_AGRO', 98, null, 1,  'CO', 'TIPO DE PRODUCTO', 'LISTA_DINAMICA', TO_DATE('2024-06-13 15:31:37', 'YYYY-MM-DD HH24:MI:SS'),
+        TO_DATE('2024-06-13 15:31:37', 'YYYY-MM-DD HH24:MI:SS'), 'b1030598','A', 65, 'N');
+ */
+
+SELECT * FROM  SIM_G2000020 WHERE COD_CAMPO in ('TIPO_PROD_AGRO','TIPO_PRODUCTOR');
+SELECT * FROM SIM_G2000020 where COD_CAMPO = 'TIPO_PROD_AGRO';
+/*
+DELETE G7000026 where COD_CIA = 3 and cod_campo in ('TIPO_PROD_AGRO');
+INSERT INTO G7000026 (COD_CIA, COD_CAMPO, DESC_LISTVAL, COD_LISTA, FECHA_CREACION, USUARIO_CREACION)
+VALUES (3, 'TIPO_PROD_AGRO', 'TRANQUILIDAD RURAL', '1', TO_DATE('2024-06-13 15:31:37', 'YYYY-MM-DD HH24:MI:SS'), 'b1030598');
+INSERT INTO G7000026 (COD_CIA, COD_CAMPO, DESC_LISTVAL, COD_LISTA, FECHA_CREACION, USUARIO_CREACION)
+VALUES (3, 'TIPO_PROD_AGRO', 'CACAO', '2', TO_DATE('2024-06-13 15:31:37', 'YYYY-MM-DD HH24:MI:SS'), 'b1030598');
+ */
+
+select * from G7000026 t where t.cod_campo = 'TIPO_PROD_AGRO';
+
+select *
+from sim_log_general t
+where  t.TIMESTAMP > to_date('28-08-2024 10:18:00','dd-mm-yyyy HH24:MI:SS') and
+        t.columna like 'ECR sim_pck_proceso_listas.%'
+order by secuencia desc;
+
+--POL NUEVA
+select * from a2000030 where COD_RAMO = 605 and num_pol1 = 1004000003701;
+--POL ANTIGUA NUEVO ENDOSO
+select * from a2000030 where COD_RAMO = 605 and num_pol1 = 1004000003401;
+--SELECT * FROM  SIM_G2000020 WHERE COD_CAMPO in ('TIPO_PROD_AGRO','TIPO_PRODUCTOR');
+---datos variables polizas
+select a.*
+from a2000020 a
+where
+      COD_CAMPO in ('TIPO_PROD_AGRO','TIPO_PRODUCTOR') and
+   COD_RIES is not null and
+   num_secu_pol = 29794090881;
+
+
+select * from a2000030 where COD_RAMO = 605 and num_pol1 = 1004000003601;
+
+select * from a2000030 where COD_RAMO = 605 and num_secu_pol = 29794090881;
+
+------consulta terceros naturales y juridicos
+
+select * from naturales where numero_documento in (1030123414, 1030321401);
+select * from naturales where numero_documento in (1030598333, 1030497000);
+select distinct TIPDOC_CODIGO FROM juridicos;
+
+----MODIFICACION CAMPOS A NIVEL DE RIESGO DE BENEFICIARIO POR SIMON WEB ENDOSO NOMINATIVO-------------
+select * from g2000270 where cod_secc = 39 and COD_CAMPO in ('TIPO_DOC_BENEF', 'COD_BENEF');
+
+
+---INSERT INTO OPS$PUMA.G2000270 (COD_END, SUB_COD_END, COD_SECC, COD_CAMPO, COD_CIA, MCA_IMPRE) VALUES (39, 6, 39, 'COD_BENEF', 3, null);
+---INSERT INTO OPS$PUMA.G2000270 (COD_END, SUB_COD_END, COD_SECC, COD_CAMPO, COD_CIA, MCA_IMPRE) VALUES (39, 6, 39, 'TIPO_DOC_BENEF', 3, null);
+
+
+SELECT P.NUM_POL1      AS POLIZA_NRO,
+       P.NRO_DOCUMTO   AS DOCUMENTO,
+       S.NUM_SINI      AS NUMERO_SINIESTRO,
+       S.COD_RIES      AS RIESGO,
+       S.FECHA_SINI    AS FECHA_OCURRENCIA,
+       S.FEC_DENU_SINI AS FECHA_AVISO,
+       S.COD_CAUSA_SINI,
+       C.DESC_CAUSA    AS CAUSA,
+       T.IMP_MON_PAIS  AS VR_PAGADO,
+       (CASE
+            WHEN T.FOR_PAGO = 1 THEN 'Transferencia'
+            WHEN T.FOR_PAGO = 2 THEN 'Tarjeta de Credito'
+            WHEN T.FOR_PAGO = 3 THEN 'Daviplata'
+            WHEN T.FOR_PAGO = 4 THEN 'TRANFERENCIA'
+            WHEN T.FOR_PAGO = 5 THEN 'Bancolombia Ventanilla'
+            WHEN T.FOR_PAGO = 6 THEN 'Tranferencia Bancolombia'
+            WHEN T.FOR_PAGO IS NULL THEN 'Cheque'
+            ELSE TO_CHAR(T.FOR_PAGO)
+           END)        AS FORMA_DE_PAGO,
+       (CASE
+            WHEN S.MCA_EST_SINI = 'P' THEN 'PENDIENTE'
+            WHEN S.MCA_EST_SINI = 'T' THEN 'TERMINADO'
+            WHEN S.MCA_EST_SINI IS NULL THEN 'N/D'
+            ELSE S.MCA_EST_SINI
+           END)        AS ESTADO_SINIESTRO,
+       T.MCA_EST_PAGO  AS ESTADO_PAGO,
+       EP.DAT_OBS      AS DETALLE_ESTADO_PAGO
+FROM A7000900 S
+         INNER JOIN A2000030 P ON S.NUM_SECU_POL = P.NUM_SECU_POL AND S.COD_CIA = P.COD_CIA AND S.COD_SECC = P.COD_SECC
+         INNER JOIN A7001000 E
+                    ON S.COD_CIA = E.COD_CIA AND S.COD_SECC = E.COD_SECC AND S.NUM_SECU_SINI = E.NUM_SECU_SINI AND
+                       S.NUM_SECU_SINI = E.NUM_SECU_SINI
+         INNER JOIN A7001200 R ON E.NUM_SECU_EXPED = R.NUM_SECU_EXPED AND E.NUM_SECU_SINI = R.NUM_SECU_SINI
+         INNER JOIN A3001700 L ON S.NUM_SINI = L.NUM_SINI AND S.COD_CIA = L.COD_CIA AND S.COD_SECC = L.COD_SECC
+         LEFT OUTER JOIN A5021604 T ON L.COD_CIA = T.COD_CIA AND L.NUM_ORD_PAGO = T.NUM_ORD_PAGO
+         INNER JOIN A7000200 C ON S.COD_CAUSA_SINI = C.COD_CAUSA AND S.COD_CIA = C.COD_CIA AND C.TIPO_CAUSA = 1
+         LEFT OUTER JOIN (SELECT a.dat_obs, a.dat_car FROM C9999909 A WHERE cod_tab like '%A5021604%') EP
+                         ON T.MCA_EST_PAGO = EP.DAT_CAR
+WHERE S.COD_CIA = 3
+  AND S.COD_SECC = 39
+  AND S.COD_RAMO = 602
+  AND P.NUM_POL1 = 1004000000301
+  --AND S.COD_RIES = :Ip_riesgo
+  AND P.NUM_END = (SELECT MAX(B.NUM_END) FROM A2000030 B WHERE B.NUM_SECU_POL = P.NUM_SECU_POL)
+  AND E.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp)
+                         FROM A7001000 E
+                         WHERE S.COD_CIA = E.COD_CIA
+                           AND S.COD_SECC = E.COD_SECC
+                           AND S.NUM_SECU_SINI = E.NUM_SECU_SINI);
+
+select * from a2000030 where COD_RAMO = 602 and num_pol1 = 1004000000301;
+
+select MAX(NUM_END), MAX(NUM_SECU_POL), MAX(FECHA_VENC_END)
+from a2000030
+where COD_SECC = 39
+  and COD_RAMO in (602, 605)
+  and num_pol1 = 1010000006201;
+
+select *
+from a2000030
+where COD_SECC = 39
+  and COD_RAMO in (602, 605)
+  and num_pol1 = 5132005110801;
+
+
+SELECT COUNT(1)
+FROM A7000900
+WHERE COD_SECC = 39
+  AND COD_RAMO = 605
+  AND COD_CAUSA_BAJA IS NULL
+  AND NUM_SECU_POL = 29789263515;
+
+select SYSDATE, TRUNC(TO_DATE('2019-09-30', 'YYYY-MM-DD HH24:MI:SS'), 'MM'), TRUNC(LAST_DAY(TO_DATE('2019-09-30', 'YYYY-MM-DD HH24:MI:SS'))) + INTERVAL '12' HOUR from dual
+WHERE SYSDATE NOT BETWEEN TRUNC(TO_DATE('2019-09-30', 'YYYY-MM-DD HH24:MI:SS'), 'MM') AND TRUNC(LAST_DAY(TO_DATE('2019-09-30', 'YYYY-MM-DD HH24:MI:SS'))) + INTERVAL '12' HOUR;
+
+SELECT TRUNC(SYSDATE, 'MM') AS primer_dia_mes_actual
+FROM dual;
+
+select * from a2000030 where COD_RAMO = 605 and NRO_DOCUMTO = 79143293;
+
+select a.*
+from a2000020 a
+where  num_secu_pol = 29732571725 and COD_CAMPO like '%ASEG%';
+
+select VALOR_CAMPO
+from a2000020
+where  num_secu_pol = 29732571725 and COD_RIES = 1 and COD_CAMPO = 'TIPO_DOC_BENEF';
+
+
+SELECT P.NUM_POL1      AS POLIZA_NRO,
+       P.NRO_DOCUMTO   AS DOCUMENTO,
+       S.NUM_SINI      AS NUMERO_SINIESTRO,
+       S.COD_RIES      AS RIESGO,
+       S.FECHA_SINI    AS FECHA_OCURRENCIA,
+       S.FEC_DENU_SINI AS FECHA_AVISO,
+       S.COD_CAUSA_SINI,
+       C.DESC_CAUSA    AS CAUSA,
+       T.IMP_MON_PAIS  AS VR_PAGADO,
+       (CASE
+            WHEN T.FOR_PAGO = 1 THEN 'Transferencia'
+            WHEN T.FOR_PAGO = 2 THEN 'Tarjeta de Credito'
+            WHEN T.FOR_PAGO = 3 THEN 'Daviplata'
+            WHEN T.FOR_PAGO = 4 THEN 'TRANFERENCIA'
+            WHEN T.FOR_PAGO = 5 THEN 'Bancolombia Ventanilla'
+            WHEN T.FOR_PAGO = 6 THEN 'Tranferencia Bancolombia'
+            WHEN T.FOR_PAGO IS NULL THEN 'Cheque'
+            ELSE TO_CHAR(T.FOR_PAGO)
+           END)        AS FORMA_DE_PAGO,
+       (CASE
+            WHEN S.MCA_EST_SINI = 'P' THEN 'PENDIENTE'
+            WHEN S.MCA_EST_SINI = 'T' THEN 'TERMINADO'
+            WHEN S.MCA_EST_SINI IS NULL THEN 'N/D'
+            ELSE S.MCA_EST_SINI
+           END)        AS ESTADO_SINIESTRO,
+       T.MCA_EST_PAGO  AS ESTADO_PAGO,
+       EP.DAT_OBS      AS DETALLE_ESTADO_PAGO,
+       L.NUM_ORD_PAGO  AS ORDEN_DE_PAGO,
+       L.FECHA_PAGO,
+       B.NUMERO_CTA_DESTINO,
+       LPAD(SUBSTR(B.NUMERO_CTA_DESTINO, -4), LENGTH(B.NUMERO_CTA_DESTINO), '*') AS NUMERO_CUENTA,
+       B.COD_ENTIDAD_DESTINO AS COD_ENTIDAD,
+       A.NOM_ENTIDAD,
+       T.CAUSAL_RECHAZO,
+       C.DESCRIPCION   AS DESCRIP_RECHAZO,
+       FUN_RESCATA_A2000020('TIPO_DOC_BENEF', P.NUM_SECU_POL, S.COD_RIES ) AS TIPO_DOC_BENEF,
+       FUN_RESCATA_A2000020('COD_BENEF', P.NUM_SECU_POL, S.COD_RIES ) AS COD_BENEF,
+       FUN_RESCATA_A2000020('DESC_RIES', P.NUM_SECU_POL, S.COD_RIES ) AS DESC_RIES
+      -- T.*,
+       --L.*
+FROM A7000900 S
+         INNER JOIN A2000030 P ON S.NUM_SECU_POL = P.NUM_SECU_POL AND S.COD_CIA = P.COD_CIA AND S.COD_SECC = P.COD_SECC
+         INNER JOIN A7001000 E
+                    ON S.COD_CIA = E.COD_CIA AND S.COD_SECC = E.COD_SECC AND S.NUM_SECU_SINI = E.NUM_SECU_SINI AND
+                       S.NUM_SECU_SINI = E.NUM_SECU_SINI
+         INNER JOIN A7001200 R ON E.NUM_SECU_EXPED = R.NUM_SECU_EXPED AND E.NUM_SECU_SINI = R.NUM_SECU_SINI
+         INNER JOIN A3001700 L ON S.NUM_SINI = L.NUM_SINI AND S.COD_CIA = L.COD_CIA AND S.COD_SECC = L.COD_SECC
+         LEFT OUTER JOIN A5021604 T ON L.COD_CIA = T.COD_CIA AND L.NUM_ORD_PAGO = T.NUM_ORD_PAGO
+         INNER JOIN A7000200 C ON S.COD_CAUSA_SINI = C.COD_CAUSA AND S.COD_CIA = C.COD_CIA AND C.TIPO_CAUSA = 1
+         LEFT OUTER JOIN (SELECT a.dat_obs, a.dat_car FROM C9999909 A WHERE cod_tab like '%A5021604%') EP
+                         ON T.MCA_EST_PAGO = EP.DAT_CAR
+         LEFT OUTER JOIN a5021106 C ON T.CAUSAL_RECHAZO = C.COD_RECHAZO
+         LEFT OUTER JOIN a5021104 B ON T.NUM_ORD_PAGO = B.NUM_ORD_PAGO
+         LEFT OUTER JOIN (SELECT DISTINCT num_entidad, nom_entidad
+                          FROM a5020900
+                          WHERE ach = 'S'
+                            AND  num_entidad != 34) A ON B.COD_ENTIDAD_DESTINO = A.NUM_ENTIDAD
+WHERE S.COD_CIA = 3
+  AND S.COD_SECC = 39
+  AND S.COD_RAMO = 602
+ -- AND T.FOR_PAGO = 6
+  --AND P.NUM_POL1 = 1004000000301
+  AND P.NUM_POL1 = 1004000000801
+  --AND S.COD_RIES = :Ip_riesgo
+  AND P.NUM_END = (SELECT MAX(B.NUM_END) FROM A2000030 B WHERE B.NUM_SECU_POL = P.NUM_SECU_POL)
+  AND E.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp)
+                         FROM A7001000 E
+                         WHERE S.COD_CIA = E.COD_CIA
+                           AND S.COD_SECC = E.COD_SECC
+                           AND S.NUM_SECU_SINI = E.NUM_SECU_SINI);
+
+SELECT
+    P.NUM_POL1 AS POLIZA_NRO,
+    P.NRO_DOCUMTO AS DOCUMENTO,
+    S.NUM_SINI AS NUMERO_SINIESTRO,
+    S.COD_RIES AS RIESGO,
+    S.FECHA_SINI AS FECHA_OCURRENCIA,
+    S.FEC_DENU_SINI AS FECHA_AVISO,
+    S.COD_CAUSA_SINI,
+    C.DESC_CAUSA AS CAUSA,
+    T.IMP_MON_PAIS  AS VR_PAGADO,
+    (CASE
+         WHEN T.FOR_PAGO = 1 THEN 'Transferencia'
+         WHEN T.FOR_PAGO = 2 THEN 'Tarjeta de Credito'
+         WHEN T.FOR_PAGO = 3 THEN 'Daviplata'
+         WHEN T.FOR_PAGO = 4 THEN 'TRANFERENCIA'
+         WHEN T.FOR_PAGO = 5 THEN 'Bancolombia Ventanilla'
+         WHEN T.FOR_PAGO = 6 THEN 'Tranferencia Bancolombia'
+         WHEN T.FOR_PAGO IS NULL THEN 'Cheque'
+         ELSE TO_CHAR(T.FOR_PAGO )
+        END) AS FORMA_DE_PAGO,
+    (CASE
+         WHEN S.MCA_EST_SINI = 'P' THEN 'PENDIENTE'
+         WHEN S.MCA_EST_SINI = 'T' THEN 'TERMINADO'
+         WHEN S.MCA_EST_SINI IS NULL THEN 'N/D'
+        ELSE S.MCA_EST_SINI
+        END) AS ESTADO_SINIESTRO,
+    T.MCA_EST_PAGO AS ESTADO_PAGO,
+    EP.DAT_OBS AS DETALLE_ESTADO_PAGO,
+    FUN_RESCATA_A2000020('TIPO_DOC_BENEF', P.NUM_SECU_POL, S.COD_RIES ) AS TIPO_DOC_BENEF,
+    FUN_RESCATA_A2000020('COD_BENEF', P.NUM_SECU_POL, S.COD_RIES ) AS COD_BENEF,
+    FUN_RESCATA_A2000020('DESC_RIES', P.NUM_SECU_POL, S.COD_RIES ) AS DESC_RIES,
+    L.NUM_ORD_PAGO  AS ORDEN_DE_PAGO,
+    L.FECHA_PAGO,
+    LPAD(SUBSTR(B.NUMERO_CTA_DESTINO, -4), LENGTH(B.NUMERO_CTA_DESTINO), '*') AS NUMERO_CUENTA,
+    B.COD_ENTIDAD_DESTINO AS COD_ENTIDAD,
+    A.NOM_ENTIDAD,
+    T.CAUSAL_RECHAZO,
+    C.DESCRIPCION   AS DESCRIP_RECHAZO
+FROM A7000900 S
+         INNER JOIN A2000030 P ON S.NUM_SECU_POL = P.NUM_SECU_POL AND S.COD_CIA = P.COD_CIA AND S.COD_SECC = P.COD_SECC
+         INNER JOIN A7001000 E ON S.COD_CIA = E.COD_CIA AND S.COD_SECC = E.COD_SECC AND S.NUM_SECU_SINI = E.NUM_SECU_SINI
+         INNER JOIN A7001200 R ON E.NUM_SECU_EXPED = R.NUM_SECU_EXPED AND E.NUM_SECU_SINI = R.NUM_SECU_SINI
+         INNER JOIN A3001700 L ON S.NUM_SINI = L.NUM_SINI AND S.COD_CIA = L.COD_CIA AND S.COD_SECC = L.COD_SECC
+         LEFT OUTER JOIN A5021604 T ON L.COD_CIA = T.COD_CIA AND L.NUM_ORD_PAGO = T.NUM_ORD_PAGO
+         INNER JOIN A7000200 C ON S.COD_CAUSA_SINI = C.COD_CAUSA AND S.COD_CIA = C.COD_CIA AND C.TIPO_CAUSA = 1
+         LEFT OUTER JOIN (SELECT  a.dat_obs, a.dat_car FROM C9999909 A WHERE cod_tab like '%A5021604%') EP ON T.MCA_EST_PAGO = EP.DAT_CAR
+         LEFT OUTER JOIN a5021106 C ON T.CAUSAL_RECHAZO = C.COD_RECHAZO
+         LEFT OUTER JOIN a5021104 B ON T.NUM_ORD_PAGO = B.NUM_ORD_PAGO
+         LEFT OUTER JOIN (SELECT DISTINCT num_entidad, nom_entidad
+                          FROM a5020900
+                          WHERE ach = 'S'
+                            AND  num_entidad != 34) A ON B.COD_ENTIDAD_DESTINO = A.NUM_ENTIDAD
+WHERE
+ S.COD_CIA = 3
+  AND S.COD_SECC = 39
+  AND S.COD_RAMO = 605
+-- AND T.FOR_PAGO = 6
+--AND P.NUM_POL1 = 1004000000301
+  AND P.NUM_POL1 = 1010000006201
+--AND S.COD_RIES = :Ip_riesgo
+           AND P.NUM_END = (SELECT MAX(B.NUM_END) FROM A2000030 B WHERE B.NUM_SECU_POL = P.NUM_SECU_POL)
+           AND E.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp) FROM A7001000 E WHERE S.COD_CIA = E.COD_CIA AND S.COD_SECC = E.COD_SECC AND S.NUM_SECU_SINI = E.NUM_SECU_SINI)
+           AND R.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp) FROM A7001200 R WHERE S.NUM_SECU_SINI = R.NUM_SECU_SINI);
+
+
+
+SELECT B.NUMERO_CTA_DESTINO, B.COD_ENTIDAD_DESTINO, D.CAUSAL_RECHAZO, C.DESCRIPCION
+FROM a5021104 B,  a5021106 C, A5021604 D
+WHERE B.COD_CIA = 3
+  AND B.NUM_ORD_PAGO = D.NUM_ORD_PAGO
+  AND B.ESTADO_TRANSFERENCIA = 4
+  AND D.CAUSAL_RECHAZO = C.COD_RECHAZO
+  AND D.CAUSAL_RECHAZO is not null;
+
+select * from A2000030 where NUM_SECU_POL = 29789263515; -- NRO_DOCUMTO = 79143293;
+
+select * from A3001700 where NUM_SINI = 10100000002;
+
+select * from A7000900 where NUM_SINI = 10100000002 and COD_SECC = 39;
+
+
+SELECT NVL(FUN_RESCATA_A2000020('TIPO_DOC_ASEG', P.NUM_SECU_POL, NULL), P.TDOC_TERCERO)    TIPO_DOC_ASEG,
+       NVL(FUN_RESCATA_A2000020('COD_ASEG', P.NUM_SECU_POL, NULL), P.NRO_DOCUMTO)          COD_ASEG,
+       sim_pck_agricola.Fnc_Nombre_Tercero(
+               NVL(FUN_RESCATA_A2000020('TIPO_DOC_ASEG', P.NUM_SECU_POL, NULL), P.TDOC_TERCERO),
+               NVL(FUN_RESCATA_A2000020('COD_ASEG', P.NUM_SECU_POL, NULL), P.NRO_DOCUMTO)) NOM_ASEG
+FROM a2000030 P
+WHERE P.COD_CIA = 3
+  AND P.COD_SECC = 39
+  AND P.COD_RAMO = 602
+  AND P.NUM_POL1 = 1004000000301
+  AND P.NUM_END = (SELECT MAX(B.NUM_END) FROM A2000030 B WHERE B.NUM_SECU_POL = P.NUM_SECU_POL)
+  AND ROWNUM = 1;
+
+
+SELECT NVL(FUN_RESCATA_A2000020('TIPO_DOC_ASEG', 29732571725, NULL), 'VALOR_ALTERNATIVO') AS RESULTADO
+FROM DUAL;
+
+
+CREATE OR REPLACE TYPE SIM_TYP_AGRO_SINIESTRO FORCE AS OBJECT
+(
+    POLIZA_NRO          NUMBER,
+    DOCUMENTO           NUMBER,
+    NUMERO_SINIESTRO    NUMBER,
+    RIESGO              NUMBER,
+    FECHA_OCURRENCIA    DATE,
+    FECHA_AVISO         DATE,
+    COD_CAUSA_SINI      NUMBER,
+    CAUSA               VARCHAR2(40),
+    VR_PAGADO           NUMBER(17, 2),
+    FORMA_DE_PAGO       VARCHAR2(50),
+    ESTADO_SINIESTRO    VARCHAR2(50),
+    ESTADO_PAGO         VARCHAR2(1),
+    DETALLE_ESTADO_PAGO VARCHAR2(200),
+    TIPO_DOC_BENEF      VARCHAR2(3),
+    COD_BENEF           NUMBER,
+    DESC_RIES           VARCHAR2(100),
+    TIPO_DOC_ASEG       VARCHAR2(3),
+    COD_ASEG            NUMBER,
+    NOM_ASEG            VARCHAR2(100),
+    ORDEN_DE_PAGO       NUMBER,
+    FECHA_PAGO          DATE,
+    NUMERO_CUENTA       VARCHAR2(20),
+    COD_ENTIDAD         NUMBER,
+    NOM_ENTIDAD         VARCHAR2(36),
+    CAUSAL_RECHAZO      NUMBER,
+    DESCRIP_RECHAZO     VARCHAR2(100),
+    CONSTRUCTOR FUNCTION SIM_TYP_AGRO_SINIESTRO RETURN SELF AS RESULT
+)
+;
+
+
+
+CREATE OR REPLACE TYPE BODY SIM_TYP_AGRO_SINIESTRO IS
+    CONSTRUCTOR FUNCTION SIM_TYP_AGRO_SINIESTRO RETURN SELF AS RESULT AS
+    BEGIN
+        POLIZA_NRO          := NULL;
+        DOCUMENTO           := NULL;
+        NUMERO_SINIESTRO    := NULL;
+        RIESGO              := NULL;
+        FECHA_OCURRENCIA    := NULL;
+        FECHA_AVISO         := NULL;
+        COD_CAUSA_SINI      := NULL;
+        CAUSA               := NULL;
+        VR_PAGADO           := NULL;
+        FORMA_DE_PAGO       := NULL;
+        ESTADO_SINIESTRO    := NULL;
+        ESTADO_PAGO         := NULL;
+        DETALLE_ESTADO_PAGO := NULL;
+        TIPO_DOC_BENEF      := NULL;
+        COD_BENEF           := NULL;
+        DESC_RIES           := NULL;
+        TIPO_DOC_ASEG       := NULL;
+        COD_ASEG            := NULL;
+        NOM_ASEG            := NULL;
+        ORDEN_DE_PAGO       := NULL;
+        FECHA_PAGO          := NULL;
+        NUMERO_CUENTA       := NULL;
+        COD_ENTIDAD         := NULL;
+        NOM_ENTIDAD         := NULL;
+        CAUSAL_RECHAZO      := NULL;
+        DESCRIP_RECHAZO     := NULL;
+        RETURN;
+    END;
+END;
+
+
+SELECT *
+FROM ALL_DEPENDENCIES
+WHERE REFERENCED_NAME = 'SIM_TYP_AGRO_SINIESTRO'
+  AND REFERENCED_TYPE = 'TYPE';
+
+SELECT *
+FROM ALL_DEPENDENCIES
+WHERE REFERENCED_NAME = 'SIM_TYP_AGRO_POLIZA'
+  AND REFERENCED_TYPE = 'TYPE';
+
+SELECT *
+FROM ALL_DEPENDENCIES
+WHERE REFERENCED_NAME = 'SIM_TYP_ARRAY_AGRO_POLIZA'
+  AND REFERENCED_TYPE = 'TYPE';
+
+
+SELECT L.NUM_ORD_PAGO, L.FECHA_PAGO, L.*
+FROM A3001700 L
+WHERE L.COD_CIA = 3
+  AND   L.COD_SECC = 39
+  AND   L.NUM_SINI = 10040004440;
+  --AND   L.COD_CAUSA_ANU_LIQ IS NULL
+
+SELECT * FROM A5021103;-- where NUMERO_DOCUMENTO = 890907638;
+
+select * from a5021104; --where NUMERO_DOCUMENTO = 890907638;
+
+select * from OPS$PUMA.A5021604 where CAUSAL_RECHAZO is not null;
+
+select * from OPS$PUMA.A5010031;
+
+SELECT DISTINCT a.num_entidad, a.nom_entidad
+FROM a5020900 a
+WHERE a.ach = 'S'
+  AND  a.num_entidad != 34;
+
+SELECT a.*
+FROM a5020900 a;
+
+select * from a5021106;
+
+SELECT 'RECHAZADA - '||C.DESCRIPCION
+FROM a5021104 b,  a5021106 C, A5021604 D
+WHERE B.COD_CIA = 3
+  AND B.NUM_ORD_PAGO = D.NUM_ORD_PAGO
+  AND B.ESTADO_TRANSFERENCIA = 4
+  AND D.CAUSAL_RECHAZO = C.COD_RECHAZO
+  AND D.CAUSAL_RECHAZO is not null;
+
+SELECT * FROM A5021604 WHERE COD_CIA = 3;
+
+
+
+SELECT
+    P.NUM_POL1 AS POLIZA_NRO,
+    P.NRO_DOCUMTO AS DOCUMENTO,
+    S.NUM_SINI AS NUMERO_SINIESTRO,
+   -- P.*,
+    S.COD_RIES AS RIESGO,
+    S.FECHA_SINI AS FECHA_OCURRENCIA,
+    S.FEC_DENU_SINI AS FECHA_AVISO,
+    S.COD_CAUSA_SINI,
+    C.DESC_CAUSA AS CAUSA,
+    T.IMP_MON_PAIS  AS VR_PAGADO,
+    (CASE
+         WHEN T.FOR_PAGO = 1 THEN 'Transferencia'
+         WHEN T.FOR_PAGO = 2 THEN 'Tarjeta de Credito'
+         WHEN T.FOR_PAGO = 3 THEN 'Daviplata'
+         WHEN T.FOR_PAGO = 4 THEN 'TRANFERENCIA'
+         WHEN T.FOR_PAGO = 5 THEN 'Bancolombia Ventanilla'
+         WHEN T.FOR_PAGO = 6 THEN 'Tranferencia Bancolombia'
+         WHEN T.FOR_PAGO IS NULL THEN 'Cheque'
+         ELSE TO_CHAR(T.FOR_PAGO )
+        END) AS FORMA_DE_PAGO,
+    (CASE
+         WHEN S.MCA_EST_SINI = 'P' THEN 'PENDIENTE'
+         WHEN S.MCA_EST_SINI = 'T' THEN 'TERMINADO'
+         WHEN S.MCA_EST_SINI IS NULL THEN 'N/D'
+         ELSE S.MCA_EST_SINI
+        END) AS ESTADO_SINIESTRO,
+    T.MCA_EST_PAGO AS ESTADO_PAGO,
+    EP.DAT_OBS AS DETALLE_ESTADO_PAGO,
+    FUN_RESCATA_A2000020('TIPO_DOC_BENEF', P.NUM_SECU_POL, S.COD_RIES ) AS TIPO_DOC_BENEF,
+    FUN_RESCATA_A2000020('COD_BENEF', P.NUM_SECU_POL, S.COD_RIES ) AS COD_BENEF,
+    FUN_RESCATA_A2000020('DESC_RIES', P.NUM_SECU_POL, S.COD_RIES ) AS DESC_RIES,
+    L.NUM_ORD_PAGO  AS ORDEN_DE_PAGO,
+    L.FECHA_PAGO,
+    T.FECHA_PAGO,
+    LPAD(SUBSTR(B.NUMERO_CTA_DESTINO, -4), LENGTH(B.NUMERO_CTA_DESTINO), '*') AS NUMERO_CUENTA,
+    B.COD_ENTIDAD_DESTINO AS COD_ENTIDAD,
+    A.NOM_ENTIDAD,
+    T.CAUSAL_RECHAZO,
+    C.DESCRIPCION   AS DESCRIP_RECHAZO
+FROM A7000900 S
+         INNER JOIN A2000030 P ON S.NUM_SECU_POL = P.NUM_SECU_POL AND S.COD_CIA = P.COD_CIA AND S.COD_SECC = P.COD_SECC
+         INNER JOIN A7001000 E ON S.COD_CIA = E.COD_CIA AND S.COD_SECC = E.COD_SECC AND S.NUM_SECU_SINI = E.NUM_SECU_SINI AND S.NUM_SECU_SINI = E.NUM_SECU_SINI
+         INNER JOIN A7001200 R ON E.NUM_SECU_EXPED = R.NUM_SECU_EXPED AND E.NUM_SECU_SINI = R.NUM_SECU_SINI
+         INNER JOIN A3001700 L ON S.NUM_SINI = L.NUM_SINI AND S.COD_CIA = L.COD_CIA AND S.COD_SECC = L.COD_SECC
+         LEFT OUTER JOIN A5021604 T ON L.COD_CIA = T.COD_CIA AND L.NUM_ORD_PAGO = T.NUM_ORD_PAGO
+         INNER JOIN A7000200 C ON S.COD_CAUSA_SINI = C.COD_CAUSA AND S.COD_CIA = C.COD_CIA AND C.TIPO_CAUSA = 1
+         LEFT OUTER JOIN (SELECT  a.dat_obs, a.dat_car FROM C9999909 A WHERE cod_tab like '%A5021604%') EP ON T.MCA_EST_PAGO = EP.DAT_CAR
+         LEFT OUTER JOIN a5021106 C ON T.CAUSAL_RECHAZO = C.COD_RECHAZO
+         LEFT OUTER JOIN a5021104 B ON T.NUM_ORD_PAGO = B.NUM_ORD_PAGO
+         LEFT OUTER JOIN (SELECT DISTINCT num_entidad, nom_entidad
+                          FROM a5020900
+                          WHERE ach = 'S'
+                            AND  num_entidad != 34) A ON B.COD_ENTIDAD_DESTINO = A.NUM_ENTIDAD
+WHERE
+        S.COD_CIA = 3
+  AND S.COD_SECC = 39
+  AND S.COD_RAMO in (602, 605)
+-- AND T.FOR_PAGO = 6
+--AND P.NUM_POL1 = 1004000040801  --602
+  AND P.NUM_POL1 = 1010000006201
+ --AND P.NUM_POL1 = 1004000039101
+ -- AND S.NUM_SINI = 10100000002
+--AND S.COD_RIES = :Ip_riesgo
+  AND P.NUM_END = (SELECT MAX(B.NUM_END) FROM A2000030 B WHERE B.NUM_SECU_POL = P.NUM_SECU_POL)
+  AND E.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp) FROM A7001000 E WHERE S.COD_CIA = E.COD_CIA AND S.COD_SECC = E.COD_SECC AND S.NUM_SECU_SINI = E.NUM_SECU_SINI)
+  AND R.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp) FROM A7001200 R WHERE S.NUM_SECU_SINI = R.NUM_SECU_SINI);
+
+SELECT fecha_pago
+FROM A5021604
+WHERE cod_cia = 3
+  AND num_ord_pago = 154096000064;
+
+SELECT *
+FROM A5021604
+WHERE cod_cia = 3
+  AND num_ord_pago = 70162019004440;
+
+
+select * from A3001700 where NUM_SINI = 10100000002 and COD_SECC = 39;
+
+select * from A7000900 where NUM_SINI = 10100000002 and COD_SECC = 39;
+
+select  r.* from A7001000 E
+                  INNER JOIN A7001200 R ON E.NUM_SECU_EXPED = R.NUM_SECU_EXPED AND E.NUM_SECU_SINI = R.NUM_SECU_SINI
+where NUM_SINI = 10100000002 and COD_SECC = 39  AND E.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp) FROM A7001000 E WHERE 3 = E.COD_CIA AND 39 = E.COD_SECC AND 10100000002 = E.NUM_SINI);
+
+
+SELECT
+
+    count(S.NUM_SINI) AS NUMERO_SINIESTRO, S.NUM_SINI
+
+FROM A7000900 S
+         INNER JOIN A2000030 P ON S.NUM_SECU_POL = P.NUM_SECU_POL AND S.COD_CIA = P.COD_CIA AND S.COD_SECC = P.COD_SECC
+         INNER JOIN A7001000 E ON S.COD_CIA = E.COD_CIA AND S.COD_SECC = E.COD_SECC AND S.NUM_SECU_SINI = E.NUM_SECU_SINI
+         INNER JOIN A7001200 R ON E.NUM_SECU_EXPED = R.NUM_SECU_EXPED AND E.NUM_SECU_SINI = R.NUM_SECU_SINI
+         INNER JOIN A3001700 L ON S.NUM_SINI = L.NUM_SINI AND S.COD_CIA = L.COD_CIA AND S.COD_SECC = L.COD_SECC
+         LEFT OUTER JOIN A5021604 T ON L.COD_CIA = T.COD_CIA AND L.NUM_ORD_PAGO = T.NUM_ORD_PAGO
+         INNER JOIN A7000200 C ON S.COD_CAUSA_SINI = C.COD_CAUSA AND S.COD_CIA = C.COD_CIA AND C.TIPO_CAUSA = 1
+         LEFT OUTER JOIN (SELECT  a.dat_obs, a.dat_car FROM C9999909 A WHERE cod_tab like '%A5021604%') EP ON T.MCA_EST_PAGO = EP.DAT_CAR
+         LEFT OUTER JOIN a5021106 C ON T.CAUSAL_RECHAZO = C.COD_RECHAZO
+         LEFT OUTER JOIN a5021104 B ON T.NUM_ORD_PAGO = B.NUM_ORD_PAGO
+         LEFT OUTER JOIN (SELECT DISTINCT num_entidad, nom_entidad
+                          FROM a5020900
+                          WHERE ach = 'S'
+                            AND  num_entidad != 34) A ON B.COD_ENTIDAD_DESTINO = A.NUM_ENTIDAD
+WHERE
+        S.COD_CIA = 3
+  AND S.COD_SECC = 39
+  AND S.COD_RAMO = 605
+-- AND T.FOR_PAGO = 6
+--AND P.NUM_POL1 = 1004000000301
+  AND P.NUM_POL1 = 1010000006201
+--AND S.COD_RIES = :Ip_riesgo
+  AND P.NUM_END = (SELECT MAX(B.NUM_END) FROM A2000030 B WHERE B.NUM_SECU_POL = P.NUM_SECU_POL)
+  AND E.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp) FROM A7001000 E WHERE S.COD_CIA = E.COD_CIA AND S.COD_SECC = E.COD_SECC AND S.NUM_SECU_SINI = E.NUM_SECU_SINI)
+  AND R.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp) FROM A7001200 R WHERE S.NUM_SECU_SINI = R.NUM_SECU_SINI)
+  group by S.NUM_SINI;
+  --AND R.Nro_Orden_Exp = (SELECT MAX(Nro_Orden_Exp) FROM A7001200 R WHERE S.NUM_SECU_SINI = R.NUM_SECU_SINI);
+
+
+select * from g9001000 where COD_PROG like 'CB239002%';
+select * from a2990051 where COD_PROG like 'CB239002%';
+select * from a2990052 where COD_PROG like 'CB239002%';
+select * from g9001200 where COD_PROG like 'CB239002%';
+
+/*
+INSERT INTO G9001000 (COD_PROG, DESC_PROG, PADRE, NRO_ORDEN, REAL, APLICACION, FECHA_CREACION, COD_USER)
+VALUES ('CB239004.INP', 'CAFE SEGURO - BORRA ENDOSO 1', 'AM000000.INP', null, 'N', 'EMIS',
+        TO_DATE('2024-07-05', 'YYYY-MM-DD HH24:MI:SS'), 'b1030598');
+INSERT INTO G9001000 (COD_PROG, DESC_PROG, PADRE, NRO_ORDEN, REAL, APLICACION, FECHA_CREACION, COD_USER)
+VALUES ('CB239004.PCO', 'CAFE SEGURO - BORRA ENDOSO 1', 'AM000000.INP', null, 'S', 'EMIS',
+        TO_DATE('2024-07-05', 'YYYY-MM-DD HH24:MI:SS'), 'b1030598');
+INSERT INTO A2990051 (COD_PROG, COD_LISTADO, PARA1, OBLIGATORIO_1, PARA2, OBLIGATORIO_2, PARA3, OBLIGATORIO_3, PARA4,
+                      OBLIGATORIO_4, PARA5, OBLIGATORIO_5, PARA6, OBLIGATORIO_6, PARA7, OBLIGATORIO_7, PARAFECHA1,
+                      OBLIGATORIO_F1, PARAFECHA2, OBLIGATORIO_F2, PARAFECHA3, OBLIGATORIO_F3, IDARCH,
+                      APLICA_PROCESOS_AUT)
+VALUES ('CB239004.INP', 'CB239004.PCO', 'COD_CIA', 'S', 'COD_SECC', 'S', 'COD_RAMO', 'S', 'ENTIDAD_COLOCAD', 'S',
+        'NUM_POL1', 'S', null, null, null, null, null, null, null, null, null, null, 'CBEN', 'N');
+INSERT INTO A2990052 (COD_PROG, COD_LISTADO, IDFORM, NOM_FORM, SETEO, PAPEL, MCA_AGENCIA)
+VALUES ('CB239004.INP', 'CB239004.PCO', 'BOR4', 'CAFE SEGURO - BORRA ENDOSO 1', null, null, 'N');
+INSERT INTO G9001200 (COD_PROG, COD_USR, COD_PAIS, COD_TIPO, COD_SIST, COD_SUBS, CAT_USER)
+VALUES ('CB239004', 'TRJETE04', 'C', 'B', '2', '39', null);
+INSERT INTO G9001200 (COD_PROG, COD_USR, COD_PAIS, COD_TIPO, COD_SIST, COD_SUBS, CAT_USER)
+VALUES ('CB239004', 'SISTEMAS', 'C', 'B', '2', '39', null);
+*/
+select * from g9001000 where COD_PROG like 'CB239004%';
+select * from a2990051 where COD_PROG like 'CB239004%';
+select * from a2990052 where COD_PROG like 'CB239004%';
+select * from g9001200 where COD_PROG like 'CB239004%';
+
+SELECT * FROM C9999909 WHERE COD_TAB = 'MODRIESGO_NROMAX' and COD_SECC = 39;
+
+--DELETE C9999909 WHERE COD_TAB = 'MODRIESGO_NROMAX' and COD_SECC = 39;
+
+SELECT C.DAT_CAR, C.*
+FROM C9999909 C
+WHERE COD_TAB  = 'DATOS_DINAMICOS_AGRO'
+  AND DAT_OBS  = 'COD_CAMPO'
+ -- AND COD_RAMO = 602
+  AND COD_SECC = 39
+  AND COD_CIA  = 3;
+
+
+SELECT C.DAT_CAR, C.*
+FROM C9999909 C
+WHERE COD_TAB  = 'DATOS_DINAMICOS_AGRO'
+  AND DAT_OBS  = 'COD_CAMPO'
+  AND COD_RAMO = 923
+  --AND COD_SECC = 39
+  AND COD_CIA  = 3;
+
+SELECT
+    P.NUM_SECU_POL,
+    R.VALOR_CAMPO,
+    ROW_NUMBER() OVER (ORDER BY p.num_secu_pol) NO_ASEGURADO,
+    R.COD_RIES AS RIESGO,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'NRO_DOCUMTO') AS NRO_DOCUMTO,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'VEREDA') AS VEREDA,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'NO_GRID') AS NO_GRID,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'FINCA') AS FINCA,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'LOTE') AS LOTE,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'COORDENADAS_LATITUD') AS COORDENADAS_LATITUD,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'COORDENADAS_LONGITUD') AS COORDENADAS_LONGITUD,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'NOMBRE_ASEGURADO') AS NOMBRE_ASEGURADO,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'TIPO_IDENTIFICACION') AS TIPO_IDENTIFICACION,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'CIUDAD') AS CIUDAD,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'HECTAREAS') AS HECTAREAS,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'VALOR_ASEGURADO') AS VALOR_ASEGURADO,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'PRIMA_SEGURO') AS PRIMA_SEGURO,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'IVA') AS IVA,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'SUBSIDIO') AS SUBSIDIO,
+    sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'TIPO_PRODUCTOR') AS TIPO_PRODUCTOR,
+    P.NUM_POL1 AS POLIZA,
+    P.COD_CIA AS COMPANIA,
+    P.NUM_END AS ENDOSO,
+    COALESCE(P.SIM_SUBPRODUCTO, 0) AS NUMERO_SUBPRODUCTO,
+    P.COD_RAMO AS RAMO,
+    P.COD_SECC AS SECCION,
+    P.NUM_SECU_POL AS SECUPOLIZA,
+    P.NRO_DOCUMTO AS USUARIO,
+    0 AS TOTAL_PRIMA,
+    P.FECHA_VIG_END AS FECHA_VIGENCIA,
+    P.FECHA_VENC_END AS FECHA_VENCIMIENTO,
+    P.TDOC_TERCERO AS TDOC_INTEGRADOR,
+    P.NRO_DOCUMTO AS NRO_DOCUMENTO_INTEGRADOR,
+    sim_pck_agricola.Fnc_Nombre_Tercero(P.TDOC_TERCERO, P.NRO_DOCUMTO) AS NOMBRE_INTEGRADOR
+FROM A2000030 P
+         INNER JOIN A2000020 R ON P.NUM_SECU_POL = R.NUM_SECU_POL AND R.MCA_VIGENTE = 'S' AND R.COD_CAMPO = 'COD_BENEF' AND R.COD_RIES > 1
+WHERE P.NUM_END = (SELECT MAX(B.NUM_END)
+    FROM A2000030 B
+    WHERE B.NUM_SECU_POL = P.NUM_SECU_POL)
+  AND P.COD_RAMO = 602
+  AND P.COD_SECC = 39
+  AND R.VALOR_CAMPO = CAST(41890369 AS VARCHAR2(50))
+ORDER BY P.NUM_SECU_POL, R.COD_RIES;
+
+
+select *
+from A2000020 R
+where --R.NUM_SECU_POL = 29732571725
+ R.MCA_VIGENTE = 'S'
+  AND R.COD_CAMPO in ('COD_BENEF', 'API_ESTRATEGIA')
+  AND R.COD_RIES > 1
+  AND R.VALOR_CAMPO = CAST(41890369 AS VARCHAR2(50));
+
+WITH CTE AS (
+    SELECT
+        P.NUM_SECU_POL,
+        R.VALOR_CAMPO,
+        ROW_NUMBER() OVER (ORDER BY p.num_secu_pol) NO_ASEGURADO,
+        R.COD_RIES AS RIESGO,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'NRO_DOCUMTO') AS NRO_DOCUMTO,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'VEREDA') AS VEREDA,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'NO_GRID') AS NO_GRID,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'FINCA') AS FINCA,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'LOTE') AS LOTE,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'COORDENADAS_LATITUD') AS COORDENADAS_LATITUD,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'COORDENADAS_LONGITUD') AS COORDENADAS_LONGITUD,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'NOMBRE_ASEGURADO') AS NOMBRE_ASEGURADO,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'TIPO_IDENTIFICACION') AS TIPO_IDENTIFICACION,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'CIUDAD') AS CIUDAD,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'HECTAREAS') AS HECTAREAS,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'VALOR_ASEGURADO') AS VALOR_ASEGURADO,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'PRIMA_SEGURO') AS PRIMA_SEGURO,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'IVA') AS IVA,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'SUBSIDIO') AS SUBSIDIO,
+        sim_pck_agricola.Fnc_Dato_Dinamico(P.NUM_SECU_POL, R.COD_RIES, 'TIPO_PRODUCTOR') AS TIPO_PRODUCTOR,
+        P.NUM_POL1 AS POLIZA,
+        P.COD_CIA AS COMPANIA,
+        P.NUM_END AS ENDOSO,
+        COALESCE(P.SIM_SUBPRODUCTO, 0) AS NUMERO_SUBPRODUCTO,
+        P.COD_RAMO AS RAMO,
+        P.COD_SECC AS SECCION,
+        P.NUM_SECU_POL AS SECUPOLIZA,
+        P.NRO_DOCUMTO AS USUARIO,
+        0 AS TOTAL_PRIMA,
+        P.FECHA_VIG_END AS FECHA_VIGENCIA,
+        P.FECHA_VENC_POL AS FECHA_VENCIMIENTO,
+        P.TDOC_TERCERO AS TDOC_INTEGRADOR,
+        P.NRO_DOCUMTO AS NRO_DOCUMENTO_INTEGRADOR,
+        Fnc_Nombre_Tercero(P.TDOC_TERCERO, P.NRO_DOCUMTO) AS NOMBRE_INTEGRADOR
+    FROM A2000030 P
+             INNER JOIN A2000020 R ON P.NUM_SECU_POL = R.NUM_SECU_POL AND R.MCA_VIGENTE = 'S' AND R.COD_CAMPO = 'COD_BENEF' AND R.COD_RIES > 1
+    WHERE P.NUM_END = (SELECT MAX(B.NUM_END)
+                       FROM A2000030 B
+                       WHERE B.NUM_SECU_POL = P.NUM_SECU_POL)
+      AND P.COD_RAMO = 602
+      AND P.COD_SECC = 39
+      AND R.VALOR_CAMPO = CAST(41890369 AS VARCHAR2(50))
+)
+SELECT
+    max(CTE.NUM_SECU_POL),
+    CTE.VALOR_CAMPO,
+    max(CTE.FECHA_VIGENCIA),
+    max(CTE.FECHA_VENCIMIENTO),
+    max(CTE.TDOC_INTEGRADOR),
+    max(CTE.NRO_DOCUMENTO_INTEGRADOR),
+    max(CTE.NOMBRE_INTEGRADOR)
+FROM CTE
+ group by CTE.VALOR_CAMPO;
+
+
+
+--Pólizas
+select rownum, t.tdoc_tercero tipo_doc_cliente,
+       t.nro_documto nro_doc_cliente,
+       (select dv.valor_campo
+        from a2000020 dv
+        where dv.num_secu_pol = t.num_secu_pol
+          and dv.num_end = 0
+          and dv.cod_ries = 1
+          and dv.cod_campo = 'NOM_ASEGURADO') asegurado,
+       t.num_secu_pol,
+       t.cod_secc,
+       t.COD_RAMO,
+       t.num_pol1 numero_poliza,
+       t.num_pol_cotiz numero_cotizacion,
+       t.num_end,
+       t.fecha_emi,
+       t.fecha_emi_end,
+       t.fecha_vig_pol,
+       t.fecha_venc_pol,
+       T.COD_PROD,
+       nvl(t.tipo_end, 'XX'),
+       t.sim_subproducto,
+       t.for_cobro,
+       ((select count(*)
+         from a2000020 dv
+         where dv.num_secu_pol = t.num_secu_pol
+           and dv.num_end = 0
+           and dv.cod_campo = 'NOM_ASEGURADO')) riesgos,
+       t.cod_usr,
+       t.sim_usuario_creacion,
+       (select lower(dv.valor_campo)
+        from a2000020 dv
+        where dv.num_secu_pol = t.num_secu_pol
+          and dv.num_end = 0
+          and dv.cod_campo = 'ID_COTIZ') cotiz_mongo
+from a2000030 t
+where t.cod_secc = 39
+  and t.cod_ramo in (605, 602, 923)
+  and t.fecha_venc_pol >= SYSDATE
+  and t.fecha_emi <= SYSDATE
+  AND t.FECHA_VENC_POL = FECHA_VENC_PER
+  AND NVL(t.MCA_PROVISORIO, 'N') = 'N'
+  AND NVL(t.MCA_CADUCA, 'N') = 'N'
+  AND t.COD_COA != 3
+  AND NVL(t.MCA_COTIZACION, 'N') = 'N'
+  AND t.NUM_END = (SELECT MAX(B.NUM_END)
+                   FROM A2000030 B
+                   WHERE B.NUM_SECU_POL = t.NUM_SECU_POL)
+  and nvl(t.tipo_end, 'XX') <> 'AT'
+  and exists
+    (SELECT * FROM A2000020 c WHERE c.NUM_SECU_POL = t.NUM_SECU_POL)
+order by t.fecha_emi_end desc, t.num_pol1, t.num_end;
+
+select t.tdoc_tercero tipo_doc_tomador,
+       t.nro_documto nro_doc_tomador,
+       Fnc_Nombre_Tercero(t.tdoc_tercero, t.nro_documto) nombre_tomador,
+       max(t.num_secu_pol) num_secu_pol,
+       max(t.cod_ramo) cod_ramo,
+       max(t.num_pol1) numero_poliza,
+       max(t.fecha_vig_pol) fecha_vig_pol,
+       max(t.fecha_venc_pol) fecha_venc_pol,
+       max(t.cod_prod) cod_prod
+    from a2000030 t
+    where t.cod_secc = 39
+      and t.cod_ramo in (605, 602, 923)
+      and t.fecha_venc_pol >= SYSDATE
+      and t.fecha_emi <= SYSDATE
+      AND t.FECHA_VENC_POL = FECHA_VENC_PER
+      AND NVL(t.MCA_PROVISORIO, 'N') = 'N'
+      AND NVL(t.MCA_CADUCA, 'N') = 'N'
+      AND t.COD_COA != 3
+      AND NVL(t.MCA_COTIZACION, 'N') = 'N'
+      AND t.NUM_END = (SELECT MAX(B.NUM_END)
+                       FROM A2000030 B
+                       WHERE B.NUM_SECU_POL = t.NUM_SECU_POL)
+      and nvl(t.tipo_end, 'XX') <> 'AT'
+      and exists
+        (SELECT 1
+         FROM A2000020 c
+         WHERE c.NUM_SECU_POL = t.NUM_SECU_POL
+           AND c.MCA_VIGENTE = 'S'
+           AND c.COD_CAMPO = 'COD_BENEF'
+           and c.VALOR_CAMPO IN
+               ('890802621', '51646836', '901251613', '800250255', '890984843', '13501083', '900614125', '890801106',
+                '901128535', '890801626'))
+    group by t.tdoc_tercero, t.nro_documto;
+
+select t.tdoc_tercero tipo_doc_tomador,
+       t.nro_documto nro_doc_tomador,
+       Fnc_Nombre_Tercero(t.tdoc_tercero, t.nro_documto) nombre_tomador,
+       t.num_secu_pol num_secu_pol,
+       t.cod_ramo cod_ramo,
+       t.num_pol1 numero_poliza,
+       t.fecha_vig_pol fecha_vig_pol,
+       t.fecha_venc_pol fecha_venc_pol,
+       t.cod_prod cod_prod
+from a2000030 t
+where t.cod_secc = 39
+  and t.cod_ramo in (605, 602, 923)
+  and t.fecha_venc_pol >= SYSDATE
+  and t.fecha_emi <= SYSDATE
+  AND t.FECHA_VENC_POL = FECHA_VENC_PER
+  AND NVL(t.MCA_PROVISORIO, 'N') = 'N'
+  AND NVL(t.MCA_CADUCA, 'N') = 'N'
+  AND t.COD_COA != 3
+  AND NVL(t.MCA_COTIZACION, 'N') = 'N'
+  AND t.NUM_END = (SELECT MAX(B.NUM_END)
+                   FROM A2000030 B
+                   WHERE B.NUM_SECU_POL = t.NUM_SECU_POL)
+  and nvl(t.tipo_end, 'XX') <> 'AT'
+  and exists
+    (SELECT 1
+     FROM A2000020 c
+     WHERE c.NUM_SECU_POL = t.NUM_SECU_POL
+       AND c.MCA_VIGENTE = 'S'
+       AND c.COD_CAMPO = 'COD_BENEF'
+       and c.VALOR_CAMPO IN
+           ('890802621', '51646836', '901251613', '800250255', '890984843', '13501083', '900614125', '890801106',
+            '901128535', '890801626'));
+
+select r.VALOR_CAMPO                                     nro_doc_benef,
+       t.tdoc_tercero                                    tipo_doc_tomador,
+       t.nro_documto                                     nro_doc_tomador,
+       Fnc_Nombre_Tercero(t.tdoc_tercero, t.nro_documto) nombre_tomador,
+       t.num_secu_pol                                    num_secu_pol,
+       t.cod_ramo                                        cod_ramo,
+       t.num_pol1                                        numero_poliza,
+       t.fecha_vig_pol                                   fecha_vig_pol,
+       t.fecha_venc_pol                                  fecha_venc_pol,
+       t.cod_prod                                        cod_prod
+from a2000030 t
+         INNER JOIN A2000020 r
+                    ON t.NUM_SECU_POL = r.NUM_SECU_POL AND r.MCA_VIGENTE = 'S' AND r.COD_CAMPO = 'COD_BENEF' AND
+                       r.VALOR_CAMPO IN
+                       ('890802621', '51646836', '901251613', '800250255', '890984843', '13501083', '900614125',
+                        '890801106',
+                        '901128535', '890801626')
+where t.cod_secc = 39
+  and t.cod_ramo in (605, 602, 923)
+  and t.fecha_venc_pol >= SYSDATE
+  and t.fecha_emi <= SYSDATE
+  AND t.FECHA_VENC_POL = FECHA_VENC_PER
+  AND NVL(t.MCA_PROVISORIO, 'N') = 'N'
+  AND NVL(t.MCA_CADUCA, 'N') = 'N'
+  AND t.COD_COA != 3
+  AND NVL(t.MCA_COTIZACION, 'N') = 'N'
+  AND t.NUM_END = (SELECT MAX(B.NUM_END)
+                   FROM A2000030 B
+                   WHERE B.NUM_SECU_POL = t.NUM_SECU_POL)
+  and nvl(t.tipo_end, 'XX') <> 'AT';
+
+select r.VALOR_CAMPO                                     nro_doc_benef,
+       t.tdoc_tercero                                    tipo_doc_tomador,
+       t.nro_documto                                     nro_doc_tomador,
+       Fnc_Nombre_Tercero(t.tdoc_tercero, t.nro_documto) nombre_tomador,
+       max(t.num_secu_pol)                               num_secu_pol,
+       max(t.cod_ramo)                                   cod_ramo,
+       max(t.num_pol1)                                   numero_poliza,
+       max(t.fecha_vig_pol)                              fecha_vig_pol,
+       max(t.fecha_venc_pol)                             fecha_venc_pol,
+       max(t.cod_prod)                                   cod_prod
+from a2000030 t
+         INNER JOIN A2000020 r
+                    ON t.NUM_SECU_POL = r.NUM_SECU_POL AND r.MCA_VIGENTE = 'S' AND r.COD_CAMPO = 'COD_BENEF' AND
+                       r.VALOR_CAMPO IN
+                       (890802621, 51646836, 901251613, 800250255, 890984843, 13501083, 900614125, 901128535, 890801626,
+                        890801106, 1304141, 1259120, 1259254)
+where t.cod_secc = 39
+  and t.cod_ramo in (605, 602, 923)
+  and t.fecha_venc_pol >= SYSDATE
+  and t.fecha_emi <= SYSDATE
+  AND t.FECHA_VENC_POL = FECHA_VENC_PER
+  AND NVL(t.MCA_PROVISORIO, 'N') = 'N'
+  AND NVL(t.MCA_CADUCA, 'N') = 'N'
+  AND t.COD_COA != 3
+  AND NVL(t.MCA_COTIZACION, 'N') = 'N'
+  AND t.NUM_END = (SELECT MAX(B.NUM_END)
+                   FROM A2000030 B
+                   WHERE B.NUM_SECU_POL = t.NUM_SECU_POL)
+  and nvl(t.tipo_end, 'XX') <> 'AT'
+group by r.VALOR_CAMPO, t.tdoc_tercero, t.nro_documto;
+
+
+SELECT *
+FROM A2000020 c
+WHERE  c.MCA_VIGENTE = 'S'
+  AND c.COD_CAMPO = 'COD_BENEF'
+  and c.VALOR_CAMPO IN
+      ('890802621', '51646836', '901251613', '800250255', '890984843', '13501083', '900614125', '890801106',
+       '901128535', '890801626');
+
+
+
+select VALOR_CAMPO
+from a2000020
+where  num_secu_pol = 29804140142 and COD_CAMPO = 'COD_BENEF';
+
+---permiso de borrado de endosos para seccion 39
+select * from sim_borrado_automatico where id_tipo = 4 and COD_SECC = 39;

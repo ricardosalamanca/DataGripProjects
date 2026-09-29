@@ -1,0 +1,58 @@
+
+
+
+
+SELECT MAX(NUM_END)
+FROM A2000030 A
+WHERE NUM_SECU_POL = 29744812404
+  AND ((TO_DATE('02/11/21','DD/MM/YY') BETWEEN FECHA_VIG_END AND
+            NVL(FECHA_VENC_POL, ADD_MONTHS(FECHA_VIG_POL, 12)) AND
+        ((COD_RAMO != 40 AND COD_SECC = 15) OR COD_SECC != 15)) OR
+       ((TO_DATE('02/11/21','DD/MM/YY') BETWEEN FECHA_VIG_POL AND
+             NVL(FECHA_VENC_POL, TO_DATE('02/11/21','DD/MM/YY')) AND COD_RAMO = 40 AND
+         COD_SECC = 15)));
+
+
+
+SELECT A.COD_CIA        AS COD_CIA
+     , A.COD_SECC       AS COD_SECC
+     , A.NUM_POL1       AS NUM_POL1
+     , A.FECHA_VIG_POL  AS FECHA_VIG_POL
+     , A.FECHA_VENC_POL AS FECHA_VENC_POL
+     , A.COD_RAMO       AS COD_RAMO
+     , A.NUM_SECU_POL   AS NUM_SECU_POL
+     , A.NRO_DOCUMTO    AS NRO_DOCUMTO
+     , A.NUM_END        AS NUM_END
+     , A.MCA_ANU_POL    AS MCA_ANU_POL
+     , C.NOM_PRODUCTO   AS NOM_PRODUCTO
+FROM A2000030 A,
+     (SELECT COD_ASEG, NUM_SECU_POL, NUM_END, COD_CIA
+      FROM A2001300
+      WHERE COD_ASEG = 79468066
+      GROUP BY NUM_SECU_POL, COD_ASEG, NUM_END, COD_CIA) B,
+     SIM_PRODUCTOS C
+WHERE  A.TDOC_TERCERO = 'CC'
+  AND B.NUM_SECU_POL = A.NUM_SECU_POL
+  AND B.NUM_END = A.NUM_END
+  AND A.COD_CIA = B.COD_CIA
+  AND A.COD_CIA = C.COD_CIA
+  AND A.COD_SECC = C.COD_SECC
+  AND A.COD_RAMO = C.COD_PRODUCTO
+  AND A.num_end =
+      (select max(W.num_end)
+       from a2000030 W
+       where W.num_secu_pol = A.num_secu_pol)
+  AND nvl(A.mca_provisorio, 'N') = 'N'
+  and NVL(A.mca_anu_pol, 'N') != 'S'
+  AND nvl(A.mca_caduca, 'N') = 'N'
+  AND nvl(A.mca_term_ok, 'N') = 'S'
+  AND A.num_pol1 <> 0
+  AND nvl(A.fecha_venc_pol, A.fecha_venc_end) >= ADD_MONTHS(SYSDATE, -24)
+  AND nvl(A.fecha_venc_pol, A.fecha_venc_end) <= SYSDATE;
+
+select * from sim_productos where COD_PRODUCTO = 117
+
+
+SELECT * FROM A2000030 WHERE NRO_DOCUMTO = 80501297
+
+SELECT * FROM A2001300 WHERE NUM_SECU_POL = 29734519070

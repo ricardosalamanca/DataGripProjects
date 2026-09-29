@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="SAI19C_DESA" uuid="e9d4661d-48c9-43c6-871b-1e5a817cdf15">
+      <driver-ref>oracle.19</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@SAI19C_DESA</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="TNSADMIN_DIR" value="C:\ORACLE\Oracle11g\product\11.2.0\client_1\network\admin" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="SAI19C_TEST" uuid="aaf7006a-95b3-498d-855b-7d9a35517124">
+      <driver-ref>oracle.19</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@SAI19C_TEST</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="TNSADMIN_DIR" value="C:\ORACLE\Oracle11g\product\11.2.0\client_1\network\admin" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="TRONADOR_DESA" uuid="53cf865a-14bf-4fea-b3e7-afe0d77291c5">
+      <driver-ref>oracle.19</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@TRON_DESA_19C</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="TNSADMIN_DIR" value="C:\ORACLE\Oracle11g\product\11.2.0\client_1\network\admin" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="TRONADOR_TEST" uuid="762afca7-e9fc-4e4e-9c7b-14be36056856">
+      <driver-ref>oracle.19</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@TRON_TEST_19C</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="TNSADMIN_DIR" value="C:\ORACLE\Oracle11g\product\11.2.0\client_1\network\admin" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="NubeAnalisisDev" uuid="48c9d1b1-a1ec-4432-b6b1-f42d81757af6">
+      <driver-ref>mysql_aurora_aws</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>software.aws.rds.jdbc.mysql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql:aws://td-el-libertador-dev-master.csisdt1domr0.us-east-1.rds.amazonaws.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="NubeAnalisisTest" uuid="c9198858-8c0c-4aea-987f-e882bbda7a7a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://td-el-libertador-stage-master.chdtmcgrswuh.us-east-1.rds.amazonaws.com:3306/analisis_digital</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="@localhost" uuid="c7f1f560-d17c-4ab8-9f12-864ea2322469">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="SongTapPostgres@localhost" uuid="6ed7cabe-5e31-4093-a654-7f4792d9a0e9">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/songtap</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

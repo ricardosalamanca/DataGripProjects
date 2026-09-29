@@ -1,0 +1,1661 @@
+SELECT *
+FROM RSGOS_VGNTES R
+WHERE R.RVI_NMRO_ITEM = 10563845;
+SELECT *
+FROM RSGOS_VGNTES_AMPRO A
+WHERE A.RVA_NMRO_ITEM = 10563845;
+SELECT * FROM RSGOS_VGNTES_AVLOR V
+WHERE V.RVL_NMRO_ITEM = 10563845;
+SELECT * FROM RSGOS_VGNTES_NVDDES N
+WHERE N.RIVN_NMRO_ITEM  = 10563845;
+
+SELECT * FROM ADMSISA.RSGOS_RCBOS_NVDAD N
+WHERE N.REN_NMRO_ITEM  = 10135415;
+
+SELECT * FROM RSGOS_VGNTES_NVLOR NV
+WHERE NV.RVNV_NMRO_ITEM= 10563845;
+
+select *
+from rsgos_vgntes r
+where r.rvi_nmro_plza = 10160;
+
+
+SELECT * FROM POLIZAS_SIMON
+WHERE POLIZA_SIMON IN (5010001443301, 5010001443302);
+
+SELECT SNA_NMRO_SNSTRO,SNA_ESTDO_SNSTRO, SNA_CLSE_PLZA,
+       SNA_RAM_CDGO,SNA_NMRO_PLZA, SNA_ESTDO_PGO,AMS_CDGO_AMPRO,
+       POL_TPOPLZA,TRUNC(POL_FCHA_HSTA_ACTUAL)
+FROM AVSOS_SNSTROS, AMPROS_SNSTROS, PLZAS
+WHERE SNA_NMRO_ITEM = 10220059
+  --AND TRUNC(SNA_FCHA_SNSTRO) = TO_DATE('01/10/2023', 'DD/MM/YYYY') --P_FECHA_MORA
+  AND SNA_NMRO_SNSTRO = AMS_NMRO_SNSTRO
+  AND SNA_NMRO_PLZA = POL_NMRO_PLZA;
+
+SELECT SNA_NMRO_SNSTRO, SNA_FCHA_SNSTRO, SNA_ESTDO_SNSTRO, SNA_CLSE_PLZA,
+       SNA_RAM_CDGO,SNA_NMRO_PLZA, SNA_ESTDO_PGO,AMS_CDGO_AMPRO,
+       POL_TPOPLZA,TRUNC(POL_FCHA_HSTA_ACTUAL), a.* , b.*, c.*
+FROM AVSOS_SNSTROS a, AMPROS_SNSTROS b, PLZAS c
+WHERE SNA_NMRO_ITEM = 10220059
+  --AND TRUNC(SNA_FCHA_SNSTRO) = TO_DATE('01/10/2023', 'DD/MM/YYYY') --P_FECHA_MORA
+  AND SNA_NMRO_SNSTRO = AMS_NMRO_SNSTRO
+  AND SNA_NMRO_PLZA = POL_NMRO_PLZA;
+
+-------SINESTROS SAI
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_ITEM = 10261454
+/*
+UPDATE AVSOS_SNSTROS
+SET SNA_ESTDO_PGO = '04'
+WHERE SNA_NMRO_ITEM = 10261454
+  AND SNA_NMRO_SNSTRO = 2023087523
+  AND SNA_CAUSA_SNSTRO = '01'
+  AND SNA_NMRO_PLZA = 11003;
+*/
+
+
+SELECT *
+FROM V_TIPO_INMUEBLE
+WHERE VALOR = 'A';
+
+SELECT P.TIPO_MOVIMIENTO,
+       P.FECHA_CARGUE,
+       P.FECHA_CREACION,
+       P.OBSERVACION_SIMON,
+       P.FECHA_VIG_END,
+       P.FECHA_VENC_END,
+       P.*
+FROM POLIZAS_SIMON P
+WHERE SUBSTR(POLIZA_SIMON, 0, 11) IN (50100017930)
+    AND COD_SECC = 37;
+
+select a.mca_cotizacion, a.NUM_POL_COTIZ, a.NUM_POL1, a.FOR_COBRO, a.NUM_SECU_POL, a.COD_RAMO, a.MCA_ANU_POL, a.MCA_EXCLUSIVO, a.*
+from a2000030 a
+where SUBSTR(NUM_POL1, 0, 11) IN (50100017930)
+  AND COD_SECC = 37;
+
+-------SINESTROS SAI
+select * from ADMSISA.AVSOS_SNSTROS where SNA_POLIZA_SIMON = 5010001793002
+
+select * from plzas t where t.pol_nmro_plza = 144768;
+SELECT * FROM PLZAS WHERE POL_NMRO_PLZA = 11003;
+
+---POL_TPOPLZA tipo C-COLECTIVA I-INDIVIDUAL P- CUOTAS AL DIA
+
+SELECT *
+FROM AVSOS_SNSTROS, AMPROS_SNSTROS, PLZAS
+WHERE --SNA_NMRO_ITEM = 10220059
+  --AND TRUNC(SNA_FCHA_SNSTRO) = TO_DATE('01/10/2023', 'DD/MM/YYYY') --P_FECHA_MORA
+  POL_NMRO_PLZA = 11003
+  AND SNA_NMRO_SNSTRO = AMS_NMRO_SNSTRO
+  AND SNA_NMRO_PLZA = POL_NMRO_PLZA
+  AND POL_FCHA_DSDE_INCIAL > TO_DATE('01/02/2025', 'DD/MM/YYYY');
+
+select * from rsgos_rcbos WHERE RIR_NMRO_ITEM = 7741371;
+
+
+SELECT * FROM SLCTDES_ESTDIOS WHERE SES_NMRO in (11140736);
+
+select distinct substr(e.erp_error,1,300), e.erp_codigo, e.erp_dpb_ejecucion,e.erp_dpb_cod_proceso, p.prp_nombre_param, p.prp_valor, e.*
+from errores_proceso_batch e,detalle_procesos_batch d, Parametros_Proceso_Batch p
+where  e.erp_dpb_ejecucion= d.dpb_ejecucion
+  and e.erp_dpb_ejecucion= p.prp_dpb_ejecucion
+  and e.erp_dpb_cod_proceso = p.prp_dpb_cod_proceso
+  and d.dpb_objeto ='PRC_EXPEDICION_SIMON'
+  and e.erp_error like '%50100022882%';
+
+SELECT F1.*
+FROM FCHAS_PGO F1
+WHERE F1.FPG_ESTDO = 'V'
+  AND F1.MARCA_CIERRE_OPRCION = 'S';
+
+SELECT * FROM INFO_POLIZAS where clave is not null ;
+
+SELECT * FROM PLZAS;
+
+SELECT *
+FROM PGOS_EFCTDOS_SNSTROS,
+     PLZAS,
+     AVSOS_SNSTROS
+WHERE PES_NMRO_PLZA = POL_NMRO_PLZA
+  AND POL_TPOPLZA = 'I'
+  AND NVL(PES_VLOR_PGDO, 0) > 0
+  AND NVL(POL_POLIZA_SIMON, 0) != 0
+  AND SNA_NMRO_SNSTRO = PES_NMRO_SNSTRO
+  AND SNA_NMRO_ITEM = 7611096
+  AND SNA_NMRO_SNSTRO = 2024091419;
+
+SELECT *
+FROM PGOS_EFCTDOS_SNSTROS,
+     PLZAS,
+     AVSOS_SNSTROS
+WHERE PES_NMRO_PLZA = POL_NMRO_PLZA
+  AND POL_TPOPLZA = 'I'
+  AND NVL(PES_VLOR_PGDO, 0) > 0
+  AND NVL(POL_POLIZA_SIMON, 0) != 0
+  AND SNA_NMRO_SNSTRO = PES_NMRO_SNSTRO
+  AND SNA_NMRO_ITEM = 10377501
+  AND PES_FCHA_PGO = TO_DATE('22/04/2024','DD/MM/YYYY')
+AND NOT EXISTS ( SELECT 'X'
+                   FROM SIM_CARGA_LIQUIDACIONES
+                   WHERE NUM_SINI = SNA_SNSTRO_SIMON
+                     AND FECHA_PAGO = TO_DATE('01-SEP-24', 'DD-MON-YYYY'))
+  AND NOT EXISTS (SELECT 'X'
+                  FROM SIM_CARGA_SINIESTROS B
+                  WHERE B.SECUENCIA IN (SELECT X.SECUENCIA_CAR_SINI
+                                        FROM SIM_CARGA_VAR_SINIESTROS A
+                                                 JOIN(SELECT A.SECUENCIA_CAR_SINI,
+                                                             A.COD_CAMPO AS COD_CMPO2,
+                                                             A.VALOR_CAMPO AS VLOR_CMPO2
+                                                      FROM SIM_CARGA_VAR_SINIESTROS A
+                                                      WHERE (A.COD_CAMPO = 'FECHA_PAGO'
+                                                          AND (A.VALOR_CAMPO = TO_char(TO_DATE('01-SEP-24'),'DD-MON-YY')
+                                                              OR A.VALOR_CAMPO = TO_char(TO_DATE('01-SEP-24'),'DD/MM/YY'))))X
+                                                     ON X.SECUENCIA_CAR_SINI = A.SECUENCIA_CAR_SINI
+                                        WHERE A.COD_CAMPO = 'CONS_SAI'
+                                          AND  A.VALOR_CAMPO = PES_NMRO_SNSTRO))
+  AND PES_FCHA_PGO = TO_DATE('01-SEP-24', 'DD-MON-YYYY');
+
+
+SELECT *
+FROM PGOS_EFCTDOS_SNSTROS,
+     PLZAS,
+     AVSOS_SNSTROS
+WHERE PES_NMRO_PLZA = POL_NMRO_PLZA
+  AND POL_TPOPLZA = 'I'
+  AND NVL(PES_VLOR_PGDO, 0) > 0
+  AND NVL(POL_POLIZA_SIMON, 0) != 0
+  AND SNA_NMRO_SNSTRO = PES_NMRO_SNSTRO
+  AND SNA_NMRO_ITEM = 10377501
+  AND NOT EXISTS ( SELECT 'X'
+                   FROM SIM_CARGA_LIQUIDACIONES
+                   WHERE NUM_SINI = SNA_SNSTRO_SIMON
+                     AND FECHA_PAGO = TO_DATE('22-08-2025', 'DD-MM-YYYY'))
+  AND NOT EXISTS (SELECT 'X'
+                  FROM SIM_CARGA_SINIESTROS B
+                  WHERE B.SECUENCIA IN (SELECT X.SECUENCIA_CAR_SINI
+                                        FROM SIM_CARGA_VAR_SINIESTROS A
+                                                 JOIN(SELECT A.SECUENCIA_CAR_SINI,
+                                                             A.COD_CAMPO AS COD_CMPO2,
+                                                             A.VALOR_CAMPO AS VLOR_CMPO2
+                                                      FROM SIM_CARGA_VAR_SINIESTROS A
+                                                      WHERE (A.COD_CAMPO = 'FECHA_PAGO'
+                                                          AND (A.VALOR_CAMPO = TO_char(TO_DATE('21-NOV-24'),'DD-MON-YY')
+                                                              OR A.VALOR_CAMPO = TO_char(TO_DATE('21-11-24'),'DD/MM/YY'))))X
+                                                     ON X.SECUENCIA_CAR_SINI = A.SECUENCIA_CAR_SINI
+                                        WHERE A.COD_CAMPO = 'CONS_SAI'
+                                          AND  A.VALOR_CAMPO = PES_NMRO_SNSTRO))
+  AND PES_FCHA_PGO = TO_DATE('22-08-2025', 'DD-MM-YYYY');
+
+select * from PGOS_SNSTROS where PGS_NMRO_PLZA = 11003 and PGS_FCHA_PGO >= TO_DATE('01/08/2025','DD/MM/YYYY');
+
+SELECT PAR_RFRNCIA FROM PRMTROS WHERE PAR_DSCRPCION='USER_CARGUE_SIMON';
+
+select a.sna_nmro_item, a.sna_fcha_snstro, a.sna_estdo_snstro, a.sna_estdo_pgo
+from avsos_snstros a
+where a.sna_nmro_item =  7611439
+  and a.sna_fcha_snstro = to_date('01/07/2024','dd/mm/yyyy');
+select *
+from cntrtos_dvlver c
+where c.cnd_nmro_snstro = 2025054076;
+select *
+from rvrsnes_snstros r
+where r.rvs_nmro_snstro = 2024077397;
+
+-----TABLA DONDE QUEDAN LOS REINTEGROS
+select  d.*
+from ddas_plzas d
+where d.ddp_nmro_slctud  =6463728
+  and d.ddp_fcha_mra = to_date('01/07/2024','dd/mm/yyyy');
+
+SELECT m.*
+FROM mig_ws_metodos m;
+
+---Prompt Tabla SIM_CARGA_SINIESTROS
+select *
+from SIM_CARGA_SINIESTROS
+WHERE num_pol1 in (5010001330802);
+
+select *
+from SIM_CARGA_EXPEDIENTES
+where SECUENCIA_CAR_SINI in (select SECUENCIA
+                             from SIM_CARGA_SINIESTROS
+                             WHERE substr(num_pol1, 0, 11) in (50100019309, 50100020014, 50100015449, 50100018984, 50100019992, 50100016193));
+
+
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_ITEM = 10377501
+
+update AVSOS_SNSTROS
+set SNA_SNSTRO_SIMON = 50100002630
+where SNA_NMRO_ITEM = 7611096 AND SNA_NMRO_SNSTRO = 2024091419;
+
+SELECT * FROM SINIESTROS_CARGUE_SIMON WHERE POLIZA_SNSTRO = 5010001898402;
+
+
+select *
+from SIM_CARGA_SINIESTROS
+WHERE substr(num_pol1, 0, 11) in (50100019309, 50100020014, 50100015449, 50100018984, 50100019992, 50100016193);
+select *
+from SIM_CARGA_VAR_SINIESTROS
+WHERE substr(num_pol1, 0, 11) in (50100019309, 50100020014, 50100015449, 50100018984, 50100019992, 50100016193);
+SELECT *
+FROM SIM_CARGA_LIQUIDACIONES
+WHERE NUM_SINI = 50100002630
+  AND FECHA_PAGO = TO_DATE('21-11-2024', 'DD-MM-YYYY')
+
+SELECT *
+FROM SIM_CARGA_LIQUIDACIONES
+WHERE NUM_SINI = 50100002631
+  AND FECHA_PAGO = TO_DATE('21-11-2024', 'DD-MM-YYYY')
+
+select *
+from SIM_CARGA_EXPEDIENTES where secuencia = 1796014;
+
+SELECT * FROM SIM_CARGA_RESERVAS WHERE SECUENCIA_CAR_EXPE IN (select SECUENCIA
+                                                              from SIM_CARGA_EXPEDIENTES
+                                                              where NUM_SINI = 50100002630);
+
+-----DONDE LLEGAN LOS PAGOS PROGRAMADOS DESPUES DEL CIERRE PARA LOS SIGUIENTES PERIODOS SI EL SINIESTRO SE ENCUENTRA VIGENTE
+SELECT (V.VLQ_VLOR * D.LQT_NMRO_DIAS) TOTAL,
+       --L.*, D.*, V.*,
+       DECODE(VLQ_ORGEN, 'V', 'V - Devolucion De Contratos', 'R', 'R - Recibo De Caja', 'O', 'O - Orden De Pago', 'N', 'N - Cruce Por Factura Negativa', 'J', 'J - Ajuste De Siniestro', 'G', 'G - Generacion Siniestro', 'E', 'E - Reintegro', 'D', 'D - Desocupacion De Contrato', 'C', 'C - Cobranza', 'A', 'A - Aumento De Valor', VLQ_ORGEN) ORIGEN
+        ,LQD_NMRO_SLCTUD, LQD_TPO_LQDCION, LQD_PRDO, LQD_FCHA_PGO, LQD_FCHA_MDFCCION, LQT_FCHA_DSDE, LQT_FCHA_HSTA, LQT_NMRO_DIAS, VLQ_VLOR, LQT_ESTDO_LQDCION, LQT_FCHA_MRA, LQT_NMRO_SNSTRO, VLQ_ORGEN, VLQ_DSCRPCION
+FROM    LQDCNES       L
+   ,LQDCNES_DTLLE D
+   ,VLRES_LQDCION V
+WHERE   L.LQD_NMRO_SLCTUD = D.LQT_NMRO_SLCTUD
+  AND L.LQD_TPO_LQDCION = D.LQT_TPO_LQDCION
+ -- AND L.LQD_PRDO IN ('032024')
+  AND L.LQD_PRDO = D.LQT_PRDO
+  AND D.LQT_NMRO_SLCTUD = V.VLQ_NMRO_SLCTUD
+  AND D.LQT_TPO_LQDCION = V.VLQ_TPO_LQDCION
+  AND D.LQT_PRDO = V.VLQ_PRDO
+  AND D.LQT_SERIE = V.VLQ_SERIE
+  --AND D.LQT_NMRO_SNSTRO = 2019046861
+  --AND V.VLQ_ORGEN NOT IN ('E', 'R', 'N','A')
+  AND L.LQD_NMRO_SLCTUD IN (
+    7611439 --4997635
+    --10130277, 6783424 --7266246
+    )
+ORDER BY LQD_FCHA_PGO, LQT_NMRO_SNSTRO ASC;
+
+select a.sna_nmro_snstro, a.sna_fcha_snstro, a.sna_estdo_snstro, a.sna_estdo_pgo, a.sna_poliza_simon, A.*
+from avsos_snstros a
+where a.sna_nmro_item= 7611439;
+
+select a.sna_nmro_snstro, a.sna_fcha_snstro, a.sna_estdo_snstro, a.sna_estdo_pgo, a.sna_poliza_simon, A.*
+from avsos_snstros a
+where a.sna_nmro_item= 11067241;
+
+SELECT F1.*
+FROM FCHAS_PGO F1
+WHERE F1.FPG_ESTDO = 'V'
+  AND F1.MARCA_CIERRE_OPRCION = 'S';
+
+SELECT * FROM vlres_pgo_efctdos WHERE VPE_NMRO_SNSTRO = 2024110082;
+SELECT * FROM pgos_efctdos_snstros WHERE PES_NMRO_SNSTRO = 2024110082;
+SELECT * FROM pgos_snstros WHERE PGS_NMRO_PLZA = 142473 AND PGS_FCHA_PGO in (TO_DATE('21/11/2024','DD/MM/YYYY'),TO_DATE('20/12/2024','DD/MM/YYYY'));
+select * from SNSTROS_SUS_LIMITE where SSL_NMRO_SNSTRO = 2024110082;
+
+commit;
+/*
+INSERT INTO ADMSISA.VLRES_PGO_EFCTDOS (VPE_RAM_CDGO, VPE_CDGO_AMPRO, VPE_NMRO_SNSTRO, VPE_CNCPTO_VLOR, VPE_VLOR,
+                                       VPE_FCHA_PGO, VPE_USRIO, VPE_FCHA_MDFCCION)
+VALUES ('12', '01', 2024110082, '01', 2860472.00, DATE '2024-11-21', '1016101750', TIMESTAMP '2024-11-21 07:58:06');
+INSERT INTO ADMSISA.PGOS_EFCTDOS_SNSTROS (PES_FCHA_PGO, PES_NMRO_PLZA, PES_CLSE_PLZA, PES_RAM_CDGO, PES_NMRO_SNSTRO,
+                                          PES_VLOR_PGDO, PES_VLOR_SNSTRO, PES_VLOR_RCPRCNES, PES_FCHA_DSDE,
+                                          PES_FCHA_HSTA, PES_NMRO_DIAS, PES_TPO_PAGO, PES_USRIO, PES_FCHA_MDFCCION)
+VALUES (DATE '2024-11-21', 142473, '00', '12', 2024110082, 2860472.00, 2860472.00, 0.00, DATE '2024-10-05',
+        DATE '2024-12-04', 60, '04', '1016101750', TIMESTAMP '2024-11-21 07:58:06');
+INSERT INTO ADMSISA.PGOS_SNSTROS (PGS_FCHA_PGO, PGS_NMRO_PLZA, PGS_CLSE_PLZA, PGS_RAM_CDGO, PGS_ENT_FNCIERA,
+                                  PGS_NMRO_ORDEN_PGO, PGS_NMRO_CHQUE, PGS_VLOR_PGDO, PGS_VLOR_SNSTROS,
+                                  PGS_VLOR_RCPRCNES, PGS_VLOR_DSCNTOS_FNNCCNESS, PGS_VLOR_DSCNTOS_PRMAS, PGS_USRIO,
+                                  PGS_FCHA_MDFCCION, PGS_BAN_CDGO)
+VALUES (DATE '2024-11-21', 142473, '00', '12', null, 0, 0, 2860472.00, 2860472.00, 0.00, 0.00, 0.00, '1016101750',
+        TIMESTAMP '2024-11-21 07:58:06', null);
+*/
+
+
+
+select *
+from rcbos_cja r
+where r.rcc_nmro_rcbo = 505104849;
+select *
+from DTLLES_RCBOS_CJA r
+where r.drc_nmro_rcbo = 505104849;
+select * from CNCPTOS_DTLLE_RCBOS
+where CDR_NMRO_RCBO = 505104849;
+select *
+from rlcion_rcbos_cja r
+where r.RLR_NMRO_RCBO = 505104849;
+
+
+select *
+from rlcion_rcbos_cja c
+where c.rlr_nmro_rcbo_invesa = 505104849;
+
+SELECT RLR_VLOR_RCBO_INVESA, RLR_VLOR_RCBO
+FROM ADMSISA.RLCION_RCBOS_CJA
+WHERE RLR_NMRO_RCBO_INVESA = 505104849
+  AND RLR_CDGO_CIA = '42';
+
+select * from LMTES_IND_RSGOS where LIR_NMRO_ITEM = 7551161;
+
+SELECT * FROM ADMSISA.PLZAS WHERE POL_NMRO_PLZA = 142473;
+select * from ADMSISA.LQDCNES where LQD_NMRO_SLCTUD = 7611439;
+
+select * from ADMSISA.LQDCNES_DTLLE where LQT_NMRO_SLCTUD = 7611439;
+
+select * from VLRES_LQDCION where VLQ_NMRO_SLCTUD = 10261454
+                              AND VLQ_TPO_LQDCION = '04'
+                              AND VLQ_PRDO = '032025'
+                              AND VLQ_SERIE = 1;
+
+UPDATE VLRES_LQDCION SET VLQ_PRDO = '042025'
+WHERE VLQ_NMRO_SLCTUD = 10261454
+  AND VLQ_TPO_LQDCION = '04'
+  AND VLQ_PRDO = '032025'
+  AND VLQ_SERIE = 1;
+
+INSERT INTO VLRES_LQDCION (VLQ_NMRO_SLCTUD,VLQ_TPO_LQDCION,VLQ_PRDO,VLQ_SERIE,VLQ_RAM_CDGO,VLQ_CDGO_AMPRO,VLQ_CNCPTO_VLOR ,VLQ_USER,VLQ_VLOR,VLQ_VLOR_ORGNAL,VLQ_FCHA_MDFCCION,VLQ_ORGEN,VLQ_DSCRPCION)
+VALUES (10261454,'04','032025',1,'12','01','01',USER,37086.67,37086.67,SYSDATE,'O','LIQUIDACION FALTANTE CASO GD933-217-MDSB-788398*');
+
+select * from ADMSISA.SSPNSNES_SNSTROS where SSN_NMRO_SNSTRO = 2024110082;
+
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_SNSTRO = 2024110082;
+
+select *
+from VLRES_LQDCION
+where VLQ_NMRO_SLCTUD in (select SNA_NMRO_ITEM
+                          from ADMSISA.AVSOS_SNSTROS
+                          where SNA_ESTDO_SNSTRO = '02'
+                            and sna_estdo_pgo = '01'
+                            and SNA_FCHA_AVSO > TO_DATE('10/01/2025', 'DD/MM/YYYY'))
+  and VLQ_ORGEN = 'E';
+select *
+from ADMSISA.AVSOS_SNSTROS
+where SNA_ESTDO_SNSTRO = '02'
+  and sna_estdo_pgo = '01'
+  and SNA_FCHA_AVSO > TO_DATE('10/01/2025', 'DD/MM/YYYY');
+
+
+UPDATE ADMSISA.AVSOS_SNSTROS SET SNA_ESTDO_SNSTRO = '01', SNA_ESTDO_PGO = '01' WHERE SNA_NMRO_SNSTRO = 2024110082 AND SNA_RAM_CDGO = '12';
+----modificacion peridos de pagos
+select PAR_RFRNCIA from prmtros where PAR_CDGO = '1' and par_mdlo = '6' and PAR_VLOR1 = '1';
+
+-- Parametros de tipos de estado de siniestro
+SELECT * FROM CG_REF_CODES
+WHERE RV_DOMAIN = 'ESTADO_SINIESPAGO';
+
+-- Parametros de tipos de estado de pago de siniestros
+SELECT * FROM CG_REF_CODES
+WHERE RV_DOMAIN='ESTADO_SINIESTRO';
+
+select * from FCHAS_PGO where FPG_FCHA_PGO >= TO_DATE('01/01/2025','DD/MM/YYYY') AND TIPO_CIERRE='A';
+
+select * from FCHAS_PGO where FPG_FCHA_PGO >= TO_DATE('21/11/2024','DD/MM/YYYY') AND TIPO_CIERRE is null;
+
+SELECT NVL(POL_POLIZA_SIMON,0), POL_FCHA_HSTA_ACTUAL
+FROM PLZAS
+WHERE POL_NMRO_PLZA = 142473;
+
+SELECT * FROM POLIZAS_SIMON
+WHERE POLIZA_SIMON IN (5010001999201);
+SELECT * FROM POLIZAS_SIMON
+WHERE POLIZA_SIMON IN ( 5010001999202);
+commit ;
+
+-- Parametros de tipos de estado de siniestro
+SELECT * FROM CG_REF_CODES
+WHERE RV_DOMAIN = 'ESTADO_SINIESPAGO';
+
+-- Parametros de tipos de estado de pago de siniestros
+SELECT * FROM CG_REF_CODES
+WHERE RV_DOMAIN='ESTADO_SINIESTRO';
+
+SELECT LQT_SERIE,
+       LQT_NMRO_DIAS,
+       LQT_FCHA_DSDE,
+       LQT_FCHA_HSTA,
+       LQT_TPO_LQDCION,
+       LQT_PRDO,
+       SNA_POLIZA_SIMON
+FROM LQDCNES_DTLLE, LQDCNES, AVSOS_SNSTROS
+WHERE LQT_NMRO_SNSTRO = 2024110082
+  AND LQT_RAM_CDGO = '12'
+  AND LQT_FCHA_MRA = TO_DATE('05/10/2024','DD/MM/YYYY')
+  AND LQT_ESTDO_LQDCION = '01'
+  AND LQD_NMRO_SLCTUD = 7611439
+  AND LQD_TPO_LQDCION = LQT_TPO_LQDCION
+  AND LQD_NMRO_SLCTUD = LQT_NMRO_SLCTUD
+  AND LQD_PRDO = LQT_PRDO
+  AND LQD_FCHA_PGO = TO_DATE('21/11/2024','DD/MM/YYYY')
+  AND LQT_NMRO_SLCTUD = SNA_NMRO_ITEM
+  AND LQT_FCHA_MRA    = SNA_FCHA_SNSTRO;
+/*
+INSERT INTO LQDCNES    (LQD_NMRO_SLCTUD ,LQD_TPO_LQDCION ,LQD_PRDO,LQD_FCHA_PGO,LQD_USER,LQD_FCHA_MDFCCION)
+VALUES   (7611439,'04','122024',TO_DATE('21/02/2025', 'dd/mm/yyyy'),USER ,SYSDATE);
+INSERT INTO LQDCNES_DTLLE   (LQT_NMRO_SLCTUD,LQT_TPO_LQDCION,LQT_PRDO,LQT_SERIE,LQT_FCHA_DSDE,LQT_FCHA_HSTA,LQT_NMRO_DIAS,LQT_ESTDO_LQDCION,LQT_USER,LQT_FCHA_MDFCCION,LQT_FCHA_MRA,LQT_NMRO_SNSTRO,LQT_RAM_CDGO)
+VALUES (7611439,'04','122024' ,1,TO_DATE('05/12/2024', 'dd/mm/yyyy'),TO_DATE('04/02/2025', 'dd/mm/yyyy'),60,'01',USER,SYSDATE,TO_DATE('05/10/2024', 'dd/mm/yyyy') ,2024110082 ,'12');
+INSERT INTO VLRES_LQDCION (VLQ_NMRO_SLCTUD,VLQ_TPO_LQDCION,VLQ_PRDO,VLQ_SERIE,VLQ_RAM_CDGO,VLQ_CDGO_AMPRO,VLQ_CNCPTO_VLOR ,VLQ_USER,VLQ_VLOR,VLQ_VLOR_ORGNAL,VLQ_FCHA_MDFCCION,VLQ_ORGEN,VLQ_DSCRPCION)
+VALUES (7611439,'04','122024',1,'12','01','01',USER,47674.53,47674.53,SYSDATE,'G','ALEJANDRA GONZALEZ JIRA MDSB-758558*');
+*/
+
+UPDATE LQDCNES_DTLLE SET LQT_ESTDO_LQDCION = '02'
+WHERE LQT_NMRO_SLCTUD = 10261454
+  AND LQT_TPO_LQDCION = '04'
+  AND LQT_PRDO = '032025'
+  AND LQT_SERIE = 1
+  AND LQT_NMRO_DIAS = 30
+  AND LQT_ESTDO_LQDCION = '03'
+  AND LQT_NMRO_SNSTRO = 2023087523
+  AND LQT_RAM_CDGO = '12';
+
+INSERT INTO LQDCNES    (LQD_NMRO_SLCTUD ,LQD_TPO_LQDCION ,LQD_PRDO,LQD_FCHA_PGO,LQD_USER,LQD_FCHA_MDFCCION)
+VALUES   (10261454,'04','032025',TO_DATE('23/04/2025', 'dd/mm/yyyy'),USER ,SYSDATE);
+INSERT INTO LQDCNES_DTLLE   (LQT_NMRO_SLCTUD,LQT_TPO_LQDCION,LQT_PRDO,LQT_SERIE,LQT_FCHA_DSDE,LQT_FCHA_HSTA,LQT_NMRO_DIAS,LQT_ESTDO_LQDCION,LQT_USER,LQT_FCHA_MDFCCION,LQT_FCHA_MRA,LQT_NMRO_SNSTRO,LQT_RAM_CDGO)
+VALUES (10261454,'04','032025' ,1,TO_DATE('01/02/2025', 'dd/mm/yyyy'),TO_DATE('28/02/2025', 'dd/mm/yyyy'),30,'01',USER,SYSDATE,TO_DATE('01/09/2023', 'dd/mm/yyyy') ,2023087523 ,'12');
+INSERT INTO VLRES_LQDCION (VLQ_NMRO_SLCTUD,VLQ_TPO_LQDCION,VLQ_PRDO,VLQ_SERIE,VLQ_RAM_CDGO,VLQ_CDGO_AMPRO,VLQ_CNCPTO_VLOR ,VLQ_USER,VLQ_VLOR,VLQ_VLOR_ORGNAL,VLQ_FCHA_MDFCCION,VLQ_ORGEN,VLQ_DSCRPCION)
+VALUES (10261454,'04','032025',1,'12','01','01',USER,37086.67,37086.67,SYSDATE,'O','LIQUIDACION FALTANTE CASO GD933-217-MDSB-788398*');
+
+select * from lqdcnes where LQD_NMRO_SLCTUD   = 10261454 AND LQD_TPO_LQDCION = '04' AND LQD_PRDO = '032025';
+select * from lqdcnes_dtlle where lqt_nmro_slctud  = 10261454 AND LQT_TPO_LQDCION = '04' AND LQT_PRDO = '032025';
+select * from vlres_lqdcion where VLQ_NMRO_SLCTUD = 10261454 AND VLQ_TPO_LQDCION = '04' AND VLQ_PRDO = '032025';
+
+select * from LMTES_IND_RSGOS where LIR_NMRO_ITEM = 11067241;
+
+SELECT * FROM ADMSISA.PLZAS WHERE POL_NMRO_PLZA = 36;
+
+select * from ADMSISA.LQDCNES where LQD_NMRO_SLCTUD = 7613145;
+
+select * from ADMSISA.LQDCNES_DTLLE where LQT_NMRO_SLCTUD = 7551161;
+
+select * from VLRES_LQDCION where VLQ_NMRO_SLCTUD = 7551161;
+
+select * from ADMSISA.SSPNSNES_SNSTROS where SSN_NMRO_SNSTRO = 2025010990;
+
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_SNSTRO = 2025009032;
+
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_ITEM = 7613145;
+
+SELECT TO_DATE(TO_CHAR(TO_DATE('01/01/2025', 'dd/mm/yyyy'), 'MMYYYY'), 'MMYYYY') > TO_DATE('122024', 'MMYYYY') FROM DUAL;
+
+SELECT SNA_NMRO_ITEM,
+       SNA_NMRO_SNSTRO,
+       DVA_FCHA_MRA,
+       SNA_ESTDO_SNSTRO,
+       SNA_ESTDO_PGO,
+       SNA_FCHA_AVSO,
+       SNA_MARCA_POLIZA
+FROM AVSOS_SNSTROS, DDAS_VGNTES_ARRNDMNTOS
+WHERE SNA_NMRO_PLZA = 142473
+  AND SNA_CLSE_PLZA = '00'
+  AND SNA_RAM_CDGO = '12'
+  AND (SNA_ESTDO_PGO = '01' OR SNA_ESTDO_PGO = '00' OR
+       SNA_ESTDO_PGO = '03' OR SNA_ESTDO_PGO = '04')
+  AND SNA_ESTDO_SNSTRO not in ('06', '04')
+  AND SNA_NMRO_ITEM = DVA_NMRO_SLCTUD
+  AND SNA_FCHA_SNSTRO = DVA_FCHA_MRA
+  AND
+  -- Pagos Anticipados Mantis # 9602
+    EXISTS
+        (SELECT *
+         FROM LQDCNES D, LQDCNES_DTLLE L
+         WHERE D.LQD_NMRO_SLCTUD = L.LQT_NMRO_SLCTUD
+           AND D.LQD_TPO_LQDCION = L.LQT_TPO_LQDCION
+           AND D.LQD_PRDO = L.LQT_PRDO
+           AND L.LQT_NMRO_SNSTRO = SNA_NMRO_SNSTRO
+           AND TRUNC(D.LQD_FCHA_PGO) = TO_DATE('21/11/2024', 'dd/mm/yyyy'))
+-- Ajuste para que tome los suspendidos que tengan reintegros  GGM 02/05/2014
+UNION
+SELECT SNA_NMRO_ITEM,
+       SNA_NMRO_SNSTRO,
+       DVA_FCHA_MRA,
+       SNA_ESTDO_SNSTRO,
+       SNA_ESTDO_PGO,
+       SNA_FCHA_AVSO,
+       SNA_MARCA_POLIZA
+FROM AVSOS_SNSTROS, DDAS_VGNTES_ARRNDMNTOS
+WHERE SNA_NMRO_PLZA = 142473
+  AND SNA_CLSE_PLZA = '00'
+  AND SNA_RAM_CDGO = '12'
+  AND SNA_ESTDO_PGO = '02'
+  AND SNA_ESTDO_SNSTRO not in ('06', '04')
+  AND SNA_NMRO_ITEM = DVA_NMRO_SLCTUD
+  AND SNA_FCHA_SNSTRO = DVA_FCHA_MRA
+  -- Mantis 34415 y 35703 error de facturas negativas 22/04/2015 GGM.
+  AND PKG_CONSULTA_INDEMNIZACION.FUN_VALIDA_REINTEGROS(SNA_NMRO_SNSTRO,
+                                                       TO_DATE('21/11/2024', 'dd/mm/yyyy')) = 'S'
+  -- Pagos Anticipados Mantis # 9602
+  AND EXISTS
+    (SELECT *
+     FROM LQDCNES D, LQDCNES_DTLLE L, VLRES_LQDCION V
+     WHERE D.LQD_NMRO_SLCTUD = L.LQT_NMRO_SLCTUD
+       AND D.LQD_TPO_LQDCION = L.LQT_TPO_LQDCION
+       AND D.LQD_PRDO = L.LQT_PRDO
+       AND V.VLQ_NMRO_SLCTUD = L.LQT_NMRO_SLCTUD
+       AND V.VLQ_TPO_LQDCION = L.LQT_TPO_LQDCION
+       AND V.VLQ_PRDO = L.LQT_PRDO
+       AND V.VLQ_SERIE = L.LQT_SERIE
+       AND L.LQT_NMRO_SNSTRO = SNA_NMRO_SNSTRO
+       AND V.VLQ_ORGEN IN ('E', 'N', 'V', 'D')
+       AND V.VLQ_VLOR < 0
+       AND TRUNC(D.LQD_FCHA_PGO) = TO_DATE('21/11/2024', 'dd/mm/yyyy'));
+
+
+SELECT *
+FROM amntos_snstros
+WHERE amn_nmro_snstro = 2025010990
+  and amn_ram_cdgo = '12'
+  AND amn_cdgo_ampro  = '01'
+  and amn_cncpto      = '01';
+
+SELECT *
+FROM amntos_snstros
+WHERE amn_nmro_snstro = 2025010990
+  and amn_ram_cdgo = '12'
+  AND amn_cdgo_ampro  IN ('01','12') -- CUOTAS AL DIA GGM 18/02/2019
+  and amn_cncpto      IN ('02','C02')
+  and amn_slctud      = 11067241;
+
+Select  rvv.*
+from Rsgos_Vgntes_Vlres   rvv
+where rvv.rvv_nmro_item   = 11067241
+  and rvv.rvv_ram_cdgo    = '12'
+  and rvv.rvv_cncpto_vlor = '02';
+
+
+---MDSB-758527
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_ITEM = 7613145;
+
+select * from rsgos_vgntes WHERE RVI_NMRO_ITEM = 7613145;
+select * from rsgos_vgntes_ampro WHERE RVA_NMRO_ITEM = 7613145;
+select * from rsgos_vgntes_avlor WHERE RVL_NMRO_ITEM = 144795;
+select * from rsgos_vgntes_nvddes WHERE RIVN_NMRO_ITEM = 7613145;
+
+select *
+from POLIZAS_SIMON WHERE substr(POLIZA_SIMON, 0, 11) = 50100025022;
+
+select *
+from coberturas_simon
+WHERE NUM_SECU_POL IN (select NUM_SECU_POL
+                       from POLIZAS_SIMON
+                       WHERE substr(POLIZA_SIMON, 0, 11) = 50100025022);
+select *
+from terceros_simon
+WHERE NUM_SECU_POL IN (select NUM_SECU_POL
+                       from POLIZAS_SIMON
+                       WHERE substr(POLIZA_SIMON, 0, 11) = 50100025022);
+
+
+select *
+from errores_proceso_batch
+WHERE ERP_ERROR LIKE '%50100025022%';
+    --ERP_FECHA_CREA >= TO_DATE('01/09/2024', 'DD/MM/YYYY')
+  --AND ERP_FECHA_CREA <= TO_DATE('31/01/2025', 'DD/MM/YYYY');
+---PKG_OPERACION_SIMON
+select * from Detalle_Procesos_Batch;
+
+----TIPOS DE MOVIMIENTO INTERFACE TRONADOR SAI
+--TIPO_MOVIMIENTO = 1-- NUEVO NEGOCIO
+--TIPO_MOVIMIENTO = 2-- REHABILITACION
+--TIPO_MOVIMIENTO = 3-- RENOVACION
+--TIPO_MOVIMIENTO = 4-- CANCELACION
+
+select * from rsgos_vgntes WHERE RVI_NMRO_ITEM = 144795;
+select * from rsgos_vgntes_ampro WHERE RVA_NMRO_ITEM = 144795;
+select * from rsgos_vgntes_avlor WHERE RVL_NMRO_PLZA in (144795, 144796);
+select * from rsgos_vgntes_nvddes WHERE RIVN_NMRO_ITEM = 7613145;
+
+select * from PLZAS where POL_POLIZA_SIMON = 5010002229401;
+----ESTADO PLZAS
+---V:VIGENTE
+---R:REVOCADA
+---A:ANULADA
+
+select *
+from POLIZAS_SIMON WHERE substr(POLIZA_SIMON, 0, 11) = 50100018144;
+
+SELECT *
+FROM POLIZAS_SIMON
+WHERE COD_CIA = 3
+  AND COD_SECC = 37
+  AND COD_RAMO = 486
+  AND ESTADO_CARGUE_SIMON = 'C' -- LISTO PARA PASAR A SAI
+  AND ESTADO_CARGUE_SAI IS NULL -- PENDIENTE DE CARGUE - T - CARGUE TERMINADO
+ORDER BY SECUENCIA;
+
+SELECT * FROM INFO_POLIZAS WHERE NUMERO_POLIZA in (144795, 144796);
+SELECT * FROM AMPAROS_POLIZA WHERE SECUENCIA_POLIZA in (144795, 144796);
+
+
+SELECT POL_POLIZA_SIMON, COUNT(*) AS TOTAL_REGISTROS
+FROM PLZAS
+WHERE POL_POLIZA_SIMON IS NOT NULL
+AND POL_ESTADO_PLZA = 'V'
+GROUP BY POL_POLIZA_SIMON
+HAVING COUNT(*) > 1;
+
+SELECT P.POL_ESTADO_PLZA,
+       P.POL_POLIZA_SIMON,
+       P.POL_FCHA_ESTDO,
+       P.POL_FCHA_EXPDCION,
+       P.POL_FCHA_DSDE_INCIAL,
+       POL_FCHA_HSTA_INCIAL,
+       P.POL_USRIO,
+       P.*
+FROM PLZAS P
+WHERE P.POL_POLIZA_SIMON IN (SELECT POL_POLIZA_SIMON
+                             FROM PLZAS
+                             WHERE POL_POLIZA_SIMON IS NOT NULL
+                               AND POL_ESTADO_PLZA = 'V'
+                             GROUP BY POL_POLIZA_SIMON
+                             HAVING COUNT(*) > 1)
+ORDER BY P.POL_POLIZA_SIMON;
+
+----ESTADO PLZAS
+---V:VIGENTE
+---R:REVOCADA
+---A:ANULADA
+
+select *
+from ADMSISA.AVSOS_SNSTROS
+where SNA_NMRO_PLZA in
+      (140603, 140604, 141284, 141283, 144781, 144782, 144786, 144785, 144789, 144790, 144791, 144792, 144793, 144794,
+       144806, 144805, 144808, 144807, 144810, 144809, 144812, 144811, 144814, 144813, 144819, 144818, 144822, 144823);
+
+select *
+from POLIZAS_SIMON WHERE substr(POLIZA_SIMON, 0, 11) = 50100018144;
+
+select * from SLCTDES_ESTDIOS where SES_NMRO_PLZA in (140603, 140604, 141284, 141283, 144781, 144782, 144786, 144785, 144789, 144790, 144791, 144792, 144793, 144794,
+                                                      144806, 144805, 144808, 144807, 144810, 144809, 144812, 144811, 144814, 144813, 144819, 144818, 144822, 144823);
+
+select * from SLCTDES_ESTDIOS where SES_NMRO_PLZA in (2981949, 4646583, 6691357, 10754608);
+select * from rsgos_vgntes WHERE RVI_NMRO_ITEM in (2981949, 4646583, 6691357, 10754608);
+select * from rsgos_vgntes_ampro WHERE RVA_NMRO_ITEM in (2981949, 4646583, 6691357, 10754608);
+select * from rsgos_vgntes_avlor WHERE RVL_NMRO_PLZA in (513);
+select *
+from rsgos_vgntes_nvddes
+WHERE RIVN_NMRO_ITEM in (2981949, 4646583, 6691357, 10754608)
+  and RIVN_TPO_NVDAD = '04';
+
+select * from rsgos_vgntes_ampro WHERE RVA_NMRO_ITEM in (2981949);
+select * from rsgos_rcbos_ampro WHERE RRA_NMRO_ITEM in (2981949);
+
+select *
+FROM Parametros_Proceso_Batch p
+WHERE P.PRP_DPB_EJECUCION = 3953996;
+select *
+from errores_proceso_batch e
+where e.erp_dpb_ejecucion IN (3953996);
+select *
+FROM detalle_procesos_batch D
+WHERE D.DPB_EJECUCION = 3953996;
+select 	PRP_DPB_COD_PROCESO, PRP_DPB_EJECUCION, PRP_NOMBRE_PARAM, PRP_VALOR,
+          DPB_OBJETO, DPB_OPERACION, DPB_FEC_INI,
+          ERP_ERROR, ERP_FECHA_CREA
+FROM Parametros_Proceso_Batch p
+         INNER JOIN detalle_procesos_batch d ON (D.DPB_EJECUCION=P.PRP_DPB_EJECUCION AND D.DPB_CODIGO=P.PRP_DPB_COD_PROCESO)
+         INNER JOIN errores_proceso_batch e ON (E.ERP_DPB_EJECUCION=D.DPB_EJECUCION AND E.ERP_DPB_COD_PROCESO=D.DPB_CODIGO)
+WHERE P.PRP_DPB_EJECUCION in (2782, 4013674);
+
+select distinct substr(e.erp_error,1,300), e.erp_codigo, e.erp_dpb_ejecucion,e.erp_dpb_cod_proceso, p.prp_nombre_param, p.prp_valor, e.*
+from errores_proceso_batch e,detalle_procesos_batch d, Parametros_Proceso_Batch p
+where  e.erp_dpb_ejecucion= d.dpb_ejecucion
+  and e.erp_dpb_ejecucion= p.prp_dpb_ejecucion
+  and e.erp_dpb_cod_proceso = p.prp_dpb_cod_proceso
+  and d.dpb_objeto ='PRC_EXPEDICION_SIMON'
+  and e.erp_error like '%50100022882%';
+
+
+select * from rsgos_vgntes WHERE RVI_NMRO_ITEM = 144795;
+-- DOMINIOS DE SAI
+SELECT * FROM CG_REF_CODES
+WHERE RV_DOMAIN LIKE '%ESTADO_GARANTIA%';
+----TIPOS DE GARANTIA
+SELECT * FROM TPO_GRNTIAS;
+
+
+select r.rvi_nmro_item           solicitud,
+       p.pol_nmro_plza           poliza,
+       s.suc_nmbre               sucursal,
+       n.rvn_prs_nmro_idntfccion identificacion_inquilino,
+       t.tpo_dscrpcion           tipo_garantia,
+       g.gar_obsrvcion,
+       g.gar_nro_grntia,
+       g.gar_entdad_emsra,
+       g.gar_vigncia_dsde,
+       g.gar_vigncia_hsta,
+       g.gar_vlor_grntia
+from rsgos_vgntes r,
+     grntias g,
+     tpo_grntias t,
+     rsgos_vgntes_nits n,
+     plzas p,
+     scrsl s
+where r.rvi_nmro_item = g.gar_cdgo_slctud
+  and r.rvi_nmro_item != 0
+  and g.gar_tpo_grntia = t.tpo_cdgo
+  and r.rvi_nmro_item = n.rvn_nmro_item
+  and n.rvn_tpo_nit = 'I'
+  and r.rvi_nmro_plza = p.pol_nmro_plza
+  and p.pol_suc_cdgo = s.suc_cdgo
+  and p.pol_suc_cia_cdgo = s.suc_cia_cdgo
+ORDER BY r.rvi_nmro_item;
+
+
+SELECT NVL(TO_CHAR(r.rvi_nmro_item), ' ')
+           ||';'||NVL(TO_CHAR(p.pol_nmro_plza, '9999999999D99'), ' ')
+           ||';'||NVL(s.suc_nmbre, ' ')
+           ||';'||NVL(TO_CHAR(n.rvn_prs_nmro_idntfccion, '9999999999D99'), ' ')
+           ||';'||NVL(t.tpo_dscrpcion, ' ')
+           ||';'||NVL(g.gar_obsrvcion, ' ')
+           ||';'||NVL(g.gar_nro_grntia, ' ')
+           ||';'||NVL(g.gar_entdad_emsra, ' ')
+           ||';'||NVL(TO_CHAR(g.gar_vigncia_dsde, 'DD/MM/YYYY'), ' ')
+           ||';'||NVL(TO_CHAR(g.gar_vigncia_hsta, 'DD/MM/YYYY'), ' ')
+           ||';'||NVL(TO_CHAR(g.gar_vlor_grntia, '9999999999D99'), ' ')
+           ||';'||'final'
+FROM rsgos_vgntes r,
+     grntias g,
+     tpo_grntias t,
+     rsgos_vgntes_nits n,
+     plzas p,
+     scrsl s
+WHERE r.rvi_nmro_item = g.gar_cdgo_slctud
+  AND r.rvi_nmro_item != 0
+  AND g.gar_tpo_grntia = t.tpo_cdgo
+  AND r.rvi_nmro_item = n.rvn_nmro_item
+  AND n.rvn_tpo_nit = 'I'
+  AND r.rvi_nmro_plza = p.pol_nmro_plza
+  AND p.pol_suc_cdgo = s.suc_cdgo
+  AND p.pol_suc_cia_cdgo = s.suc_cia_cdgo
+ORDER BY r.rvi_nmro_item;
+
+
+select *
+from VLRES_LQDCION
+where VLQ_NMRO_SLCTUD in (select SNA_NMRO_ITEM
+                          from ADMSISA.AVSOS_SNSTROS
+                          where SNA_ESTDO_SNSTRO = '02'
+                            and sna_estdo_pgo = '01'
+                            and SNA_FCHA_AVSO > TO_DATE('10/01/2025', 'DD/MM/YYYY'))
+  and VLQ_ORGEN = 'E';
+select *
+from ADMSISA.AVSOS_SNSTROS
+where SNA_ESTDO_SNSTRO = '02'
+  and sna_estdo_pgo = '01'
+  and SNA_FCHA_AVSO > TO_DATE('10/01/2025', 'DD/MM/YYYY')
+  AND SNA_NMRO_ITEM IN (SELECT VLQ_NMRO_SLCTUD
+                        FROM VLRES_LQDCION
+                        WHERE VLQ_ORGEN = 'E');
+
+SELECT AMS_CDGO_AMPRO AMPARO,
+       EST_CNCPTO_VLOR CONCEPTO,
+       SUM(EST_VLOR_CIA) V_CNSTTDO,
+       SUM(EST_VLOR_AFNZDO)PAGADO_AFIANZADO
+FROM V_ABRESTDCUENTASTT, AMPROS_SNSTROS, AVSOS_SNSTROS
+WHERE EST_SLCTUD = 1140524 AND EST_FCHA_MRA = P_FECHA_MORA AND
+    EST_CRTRIO_CNSLTA = 'S' AND EST_ESTADO LIKE 'PAGADO%' AND
+    EST_PRDO NOT LIKE 'LIQUIDAC%' AND
+    SNA_NMRO_SNSTRO = AMS_NMRO_SNSTRO AND
+    SNA_RAM_CDGO = AMS_RAM_CDGO AND SNA_NMRO_ITEM = EST_SLCTUD AND
+    SNA_FCHA_SNSTRO = EST_FCHA_MRA
+GROUP BY AMS_CDGO_AMPRO, EST_CNCPTO_VLOR;
+
+select r.rvi_nmro_item           solicitud,
+       p.pol_nmro_plza           poliza,
+       s.suc_nmbre               sucursal,
+       n.rvn_prs_nmro_idntfccion identificacion_inquilino
+from rsgos_vgntes r,
+     rsgos_vgntes_nits n,
+     plzas p,
+     scrsl s
+where
+   r.rvi_nmro_item != 0
+  and r.rvi_nmro_item = n.rvn_nmro_item
+  --and n.rvn_tpo_nit = 'I'
+  and r.rvi_nmro_plza = p.pol_nmro_plza
+  and p.pol_suc_cdgo = s.suc_cdgo
+  and p.pol_suc_cia_cdgo = s.suc_cia_cdgo
+  and r.RVI_NMRO_ITEM = 1140524
+ORDER BY r.rvi_nmro_item;
+
+SELECT * FROM V_ABRESTDCUENTASTT  WHERE EST_SLCTUD = 10408468
+                                    AND EST_FCHA_MRA = to_date('01/06/2024','dd/mm/yyyy')
+                                    AND EST_CRTRIO_CNSLTA IN ('S')
+                                    AND EST_ESTADO LIKE 'PAGADO%'
+                                    AND EST_PRDO NOT LIKE 'LIQUIDAC%';
+
+SELECT ALL dbms_random.random as id,
+           'DEUDA AGENCIA' EST_DSCRPCION,
+           DDAS_PLZAS.DDP_NMRO_SLCTUD EST_SLCTUD,
+           DDAS_PLZAS.DDP_FCHA_MRA EST_FCHA_MRA,
+           DDAS_PLZAS.DDP_FCHA_MDFCCION EST_FCHA_MVTO,
+           TRUNC(DDAS_PLZAS.DDP_FCHA_DSDE) EST_FECHA_DESDE,
+           TRUNC(DDAS_PLZAS.DDP_FCHA_HSTA) EST_FECHA_HASTA,
+           DECODE(DDP_ORGEN,'D','TD DES','V','TD DEV','E','TD REIN','C','TD DEDUC','N','TD FNEG','R','TD RET FTE') EST_PRDO,
+           DECODE(PRDCTO_RCDO.PRC_CNCPTO_VLOR,NULL,
+                  DDAS_PLZAS.DDP_CNCPTO,PRDCTO_RCDO.PRC_CNCPTO_VLOR) EST_CNCPTO_VLOR,
+           DECODE(VPR_ESTDO_CNTA,NULL,'O',VPR_ESTDO_CNTA) EST_CRTRIO_CNSLTA,
+           0 EST_VLOR_DDA,
+           0 EST_VLOR_CIA,
+           SUM(DDAS_PLZAS.DDP_VLOR_DDA) EST_VLOR_AFNZDO,
+           'PAGADO' EST_ESTADO,
+           0 EST_NMRO_RCBO,
+           NULL EST_CIA_CDGO,'0' EST_CBRDOR,
+           NULL RCC_TPO_LQDCION
+FROM DDAS_PLZAS,PRDCTO_RCDO,VLRES_PRDCTO
+WHERE (DDAS_PLZAS.DDP_CNCPTO = VLRES_PRDCTO.VPR_CDGO)
+  AND ((VLRES_PRDCTO.VPR_RAM_CDGO    (+)   = PRDCTO_RCDO.PRC_RAM_CDGO)
+    AND (VLRES_PRDCTO.VPR_CDGO         (+)   = PRDCTO_RCDO.PRC_CNCPTO_VLOR))
+    AND DDAS_PLZAS.DDP_NMRO_SLCTUD = 10408468
+    AND DDAS_PLZAS.DDP_FCHA_MRA = to_date('01/06/2024','dd/mm/yyyy')
+GROUP BY 'DEUDA AGENCIA',
+         DDAS_PLZAS.DDP_NMRO_SLCTUD,
+         DDAS_PLZAS.DDP_FCHA_MRA,
+         DDAS_PLZAS.DDP_FCHA_MDFCCION,
+         DDAS_PLZAS.DDP_FCHA_DSDE,
+         DDAS_PLZAS.DDP_FCHA_HSTA,
+         DECODE(DDP_ORGEN,'D','TD DES','V','TD DEV','E','TD REIN','C','TD DEDUC','N','TD FNEG','R','TD RET FTE'),
+         DECODE(PRDCTO_RCDO.PRC_CNCPTO_VLOR,NULL,
+                DDAS_PLZAS.DDP_CNCPTO,PRDCTO_RCDO.PRC_CNCPTO_VLOR),
+         DECODE(VPR_ESTDO_CNTA,NULL,'O',VPR_ESTDO_CNTA);
+
+SELECT D.DDP_ORGEN, D.*
+FROM DDAS_PLZAS D
+WHERE DDP_NMRO_SLCTUD = 10408468
+  AND DDP_FCHA_MRA = to_date('01/06/2024', 'dd/mm/yyyy');
+
+SELECT NVL(SUM(EST_VLOR_CIA),0),
+       NVL(SUM(EST_VLOR_AFNZDO),0)
+FROM V_ABRESTDCUENTASTT
+WHERE EST_SLCTUD = 10408468
+  AND EST_FCHA_MRA = to_date('01/06/2024', 'dd/mm/yyyy');
+  AND EST_CRTRIO_CNSLTA IN ('S')
+  AND EST_ESTADO LIKE 'PAGADO%'
+  AND EST_PRDO NOT LIKE 'LIQUIDAC%';
+
+SELECT  * FROM DVLVER_CNTRTOS_BK WHERE CDV_NMRO_SLCTUD = 10408468;
+
+SELECT *
+FROM CASOS_CBRNZA
+WHERE CSC_NMRO_SLCTUD = 10408468 AND
+    CSC_FCHA_MRA = to_date('01/06/2024', 'dd/mm/yyyy');
+
+select  * from cntrtos_dvlver;
+
+SELECT AMS_CDGO_AMPRO AMPARO,
+       EST_CNCPTO_VLOR CONCEPTO,
+       SUM(EST_VLOR_CIA) V_CNSTTDO,
+       SUM(EST_VLOR_AFNZDO)PAGADO_AFIANZADO
+FROM V_ABRESTDCUENTASTT, AMPROS_SNSTROS, AVSOS_SNSTROS
+WHERE EST_SLCTUD = 10408468 AND EST_FCHA_MRA = to_date('01/06/2024', 'dd/mm/yyyy') AND
+    EST_CRTRIO_CNSLTA = 'S' AND EST_ESTADO LIKE 'PAGADO%' AND
+    EST_PRDO NOT LIKE 'LIQUIDAC%' AND
+    SNA_NMRO_SNSTRO = AMS_NMRO_SNSTRO AND
+    SNA_RAM_CDGO = AMS_RAM_CDGO AND SNA_NMRO_ITEM = EST_SLCTUD AND
+    SNA_FCHA_SNSTRO = EST_FCHA_MRA
+GROUP BY AMS_CDGO_AMPRO, EST_CNCPTO_VLOR;
+
+select *
+from AVSOS_SNSTROS,
+     cntrtos_dvlver
+where SNA_NMRO_ITEM = 10408468
+  and SNA_FCHA_SNSTRO = to_date('01/06/2024', 'dd/mm/yyyy')
+  and SNA_NMRO_SNSTRO = CND_NMRO_SNSTRO;
+
+select * from CNTRTOS_DVLVER;
+
+select *
+from AVSOS_SNSTROS,
+     cntrtos_dvlver
+where SNA_NMRO_ITEM = 10408468
+  and CND_FCHA_DVLCION = to_date('29/11/2024', 'dd/mm/yyyy')
+  and SNA_NMRO_SNSTRO = CND_NMRO_SNSTRO;
+
+SELECT DISTINCT CND_CDGO_DVLCION, A.AMS_CDGO_AMPRO
+FROM CNTRTOS_DVLVER C
+         INNER JOIN AMPROS_SNSTROS A ON (A.AMS_NMRO_SNSTRO=C.CND_NMRO_SNSTRO);
+
+select * from ADTRIAS where ADT_LLVE2 = '%2024069539%';
+
+SELECT *
+FROM LQDCNES L,
+     LQDCNES_DTLLE LD,
+     VLRES_LQDCION V,
+     VLRES_PRDCTO P
+WHERE L.LQD_NMRO_SLCTUD = 10408468
+  --AND L.LQD_PRDO = P_PRDO
+ -- AND L.LQD_FCHA_PGO = F_PAGO
+  AND L.LQD_NMRO_SLCTUD = LD.LQT_NMRO_SLCTUD
+  AND L.LQD_TPO_LQDCION = LD.LQT_TPO_LQDCION
+  AND L.LQD_PRDO = LD.LQT_PRDO
+  AND LD.LQT_FCHA_MRA = TO_DATE('01/06/2024', 'DD/MM/YYYY')
+  AND LD.LQT_NMRO_SNSTRO = 2024069539
+  AND LD.LQT_NMRO_SLCTUD = V.VLQ_NMRO_SLCTUD
+  AND LD.LQT_TPO_LQDCION = V.VLQ_TPO_LQDCION
+  AND LD.LQT_PRDO = V.VLQ_PRDO
+  AND LD.LQT_SERIE = V.VLQ_SERIE
+  AND V.VLQ_ORGEN = 'V'
+  AND V.VLQ_CDGO_AMPRO = '01'
+  AND V.VLQ_CNCPTO_VLOR = P.VPR_CDGO
+  AND P.VPR_TPO_VLOR = 'S';
+
+
+
+
+SELECT *
+FROM DDAS_PLZAS d,VLRES_DDAS v
+WHERE d.DDP_NMRO_PLZA = 10937
+  AND d.DDP_CLSE_PLZA = '00'
+  AND d.DDP_RAM_CDGO  = '12'
+  AND d.DDP_NMRO_SLCTUD = 10408468
+  AND d.DDP_FCHA_MRA   = to_date('01/06/2024', 'dd/mm/yyyy')
+  AND d.DDP_ORGEN  = 'V'
+  AND v.VLD_NMRO_SLCTUD  = d.DDP_NMRO_SLCTUD
+  AND v.VLD_FCHA_MRA     = d.DDP_FCHA_MRA
+  AND v.VLD_CDGO_AMPRO   = '01';
+
+select *
+from VLRES_DDAS
+where VLD_NMRO_SLCTUD = 7612528
+  and VLD_FCHA_MRA = to_date('01/06/2024', 'dd/mm/yyyy');
+
+
+
+SELECT *
+FROM DDAS_PLZAS d
+WHERE d.DDP_NMRO_PLZA = 10937
+  AND d.DDP_CLSE_PLZA = '00'
+  AND d.DDP_RAM_CDGO  = '12'
+  AND d.DDP_NMRO_SLCTUD = 10408468
+  AND d.DDP_FCHA_MRA   = to_date('01/06/2024', 'dd/mm/yyyy')
+  AND d.DDP_ORGEN  = 'V'
+  AND d.DDP_PGDO = 'N';
+
+SELECT *
+FROM pgos_efctdos_snstros
+WHERE PES_NMRO_SNSTRO = 2024069539
+  and PES_FCHA_PGO = to_date('18/12/2024', 'dd/mm/yyyy');
+
+
+
+
+SELECT * FROM VLRES_LQDCION WHERE VLQ_FCHA_MDFCCION = TO_TIMESTAMP('2024-11-29 14:38:05', 'YYYY-MM-DD HH24:MI:SS')
+                              AND VLQ_USER = '79547922';
+
+UPDATE USRIOS
+SET EMAIL = 'eliana.julio@segurosbolivar.com'
+WHERE USR_CDGO_USRIO = '1099215257'
+  AND EMAIL IS NULL;
+
+select * from USRIOS WHERE USR_CDGO_USRIO = '1099215257';
+
+select * from USRIOS WHERE USR_NMBRE LIKE '%JUAN DAVID LATORRE%';
+
+SELECT ROLES_USRIOS.* ,USRIOS.*
+FROM ROLES_USRIOS,USRIOS
+WHERE RUS_CDGO_ROL = '9'
+  AND RUS_CDGO_USRIO = USR_CDGO_USRIO
+  and email is null;
+
+SELECT USR_NMBRE NOMBRE,EMAIL, USRIOS.*
+FROM ROLES_USRIOS,USRIOS
+WHERE RUS_CDGO_ROL = '9'
+  AND RUS_CDGO_USRIO = USR_CDGO_USRIO
+  AND USR_ESTDO = 'V'
+  AND EMAIL IS NOT NULL;
+--dayana.toro@segurosbolivar.com,eliana.julio@segurosbolivar.com,diego.guecha@segurosbolivar.com,
+UPDATE USRIOS
+SET EMAIL = null
+WHERE USR_CDGO_USRIO in ('1144190847','1045679950','1010191589');
+
+SELECT DISTINCT USR_ESTDO FROM USRIOS GROUP BY USR_ESTDO;
+
+SELECT *
+FROM PGOS_EFCTDOS_SNSTROS P
+WHERE P.PES_FCHA_PGO > TO_DATE('01032025', 'DDMMYYYY')
+ and P.PES_NMRO_PLZA = 11003;
+
+SELECT R.*
+FROM RSGOS_VGNTES_NVDDES R
+WHERE R.RIVN_NMRO_PLZA = 11003
+  AND R.RIVN_FCHA_NVDAD >= TO_DATE('2025-03-01', 'YYYY-MM-DD')
+  AND R.RIVN_NMRO_ITEM IN
+      (10365621, 10261454, 75977836, 7211386, 11099591, 10212121, 10062416, 10994471, 7619843, 10157136, 7718915,
+       10890769, 74111405, 10148007, 10286891, 10144544, 10142075, 10104861, 10270986, 7412382, 7412426)
+ORDER BY R.RIVN_FCHA_NVDAD DESC;
+
+SELECT L.LQD_NMRO_SLCTUD,
+       L.LQD_TPO_LQDCION,
+       L.LQD_PRDO,
+       L.LQD_FCHA_PGO,
+       D.LQT_NMRO_DIAS,
+       V.VLQ_VLOR,
+       V.VLQ_VLOR_ORGNAL,
+       (D.LQT_NMRO_DIAS * V.VLQ_VLOR),
+       V.VLQ_ORGEN,
+       D.LQT_FCHA_MRA,
+       V.VLQ_CNCPTO_VLOR,
+       D.LQT_SERIE,
+       D.LQT_ESTDO_LQDCION,
+       D.LQT_FCHA_DSDE,
+       D.LQT_FCHA_HSTA,
+       D.LQT_FCHA_MRA,
+       D.LQT_NMRO_SNSTRO,
+       D.LQT_RAM_CDGO,
+       V.VLQ_CDGO_AMPRO,
+       V.VLQ_CNCPTO_VLOR,
+       L.LQD_NMRO_SLCTUD,
+       L.LQD_TPO_LQDCION,
+       L.LQD_PRDO,
+       L.LQD_FCHA_PGO,
+       L.LQD_USER,
+       L.LQD_FCHA_MDFCCION,
+       D.LQT_NMRO_SLCTUD,
+       D.LQT_TPO_LQDCION,
+       D.LQT_PRDO,
+       D.LQT_SERIE,
+       D.LQT_FCHA_DSDE,
+       D.LQT_FCHA_HSTA,
+       D.LQT_NMRO_DIAS,
+       D.LQT_ESTDO_LQDCION,
+       D.LQT_USER,
+       D.LQT_FCHA_MDFCCION,
+       D.LQT_NMRO_SNSTRO,
+       D.LQT_RAM_CDGO,
+       V.VLQ_NMRO_SLCTUD,
+       V.VLQ_TPO_LQDCION,
+       V.VLQ_PRDO,
+       V.VLQ_SERIE,
+       V.VLQ_RAM_CDGO,
+       V.VLQ_CDGO_AMPRO,
+       V.VLQ_USER,
+       V.VLQ_VLOR,
+       V.VLQ_VLOR_ORGNAL,
+       V.VLQ_FCHA_MDFCCION,
+       V.VLQ_DSCRPCION
+FROM LQDCNES       L,
+     LQDCNES_DTLLE D, -- 01 VIGENTE | 02 SUPENDIDA | 03 PROCESADA
+     VLRES_LQDCION V
+WHERE L.LQD_NMRO_SLCTUD = D.LQT_NMRO_SLCTUD
+  AND L.LQD_TPO_LQDCION = D.LQT_TPO_LQDCION
+  AND L.LQD_PRDO = D.LQT_PRDO
+  AND D.LQT_NMRO_SLCTUD = V.VLQ_NMRO_SLCTUD
+  AND D.LQT_TPO_LQDCION = V.VLQ_TPO_LQDCION
+  AND D.LQT_PRDO = V.VLQ_PRDO
+  AND D.LQT_SERIE = V.VLQ_SERIE
+  AND L.LQD_NMRO_SLCTUD IN
+      (10365621, 10261454, 75977836, 7211386, 11099591, 10212121, 10062416, 10994471, 7619843, 10157136, 7718915,
+       10890769, 74111405, 10148007, 10286891, 10144544, 10142075, 10104861, 10270986, 7412382, 7412426)
+  and V.VLQ_FCHA_MDFCCION >= TO_DATE('2025-03-01', 'YYYY-MM-DD');
+
+-----tabla tipo de novedad
+SELECT * FROM ADMSISA.TPOS_NVDAD_PRDCTO;
+
+------busqueda de reportes y forms
+select * from ADMSISA.SBMDLOS
+where SMD_DSCRPCION LIKE '%FACTURACION%SINIESTRO%';
+
+select * from ADMSISA.SBMDLOS
+where SMD_NMBRE_ARCHVO LIKE '%ORGSNVDDES%';
+
+select *
+from rsiniestros r
+where r.pes_fcha_pgo= to_date('21/03/2025','dd/mm/yyyy')
+  and r.sna_nmro_plza = 11003;
+
+select *
+from AVSOS_SNSTROS,
+     cntrtos_dvlver
+where SNA_NMRO_ITEM = 10408468
+  and SNA_FCHA_SNSTRO = to_date('01/03/2024', 'dd/mm/yyyy')
+  and SNA_NMRO_SNSTRO = CND_NMRO_SNSTRO;
+
+
+select A.SNA_ESTDO_PGO, SNA_ESTDO_SNSTRO, A.* from AVSOS_SNSTROS A where A.SNA_NMRO_ITEM = 10261454
+                                                                     AND A.SNA_NMRO_SNSTRO = 2023087523
+                                                                     AND A.SNA_CAUSA_SNSTRO = '01'
+                                                                     AND A.SNA_NMRO_PLZA = 11003;
+
+
+SELECT w.SOLICITUD Solicitud, w.FEC_DILIGENCIA Fecha_radicacion, rcb.rcc_nmro_rcbo Liquidacion, e.fecha_factura Fecha_liquidacion
+     , r.RLR_NMRO_RCBO recibo_caja_tronador, r.RLR_FCHA_RCBOS Fecha_recibo_caja, r.RLR_VLOR_RCBO valor_recibo, r.RLR_VLOR_RCBO_INVESA valor_invesa
+     , e.estado Estado_cierre, e.nro_factura_dian factura_DIAN, e.SUCURSAL sucursal
+FROM factura_electronica_libertador e
+         INNER JOIN rlcion_rcbos_cja r ON e.nro_factura_sai = r.rlr_nmro_fctra
+         INNER JOIN rcbos_cja rcb ON r.rlr_nmro_rcbo_invesa = rcb.rcc_nmro_rcbo AND rcb.RCC_SUC_CDGO = e.SUCURSAL
+         INNER JOIN liquidaciones_obligacion l ON l.numero_liquidacion = rcb.rcc_nmro_rcbo
+         INNER JOIN aew_estudios w ON w.nmro_liquidacion = l.numero_liquidacion
+WHERE e.fecha_factura >= to_date('01/01/2025', 'dd/mm/yyyy');
+
+/*
+Insert into LQDCNES_DTLLE (LQT_NMRO_SLCTUD, LQT_TPO_LQDCION, LQT_PRDO, LQT_SERIE, LQT_FCHA_DSDE, LQT_FCHA_HSTA,
+                           LQT_NMRO_DIAS, LQT_ESTDO_LQDCION, LQT_USER, LQT_FCHA_MDFCCION, LQT_FCHA_MRA, LQT_NMRO_SNSTRO,
+                           LQT_RAM_CDGO)
+values (10261454, '04', '032025', 6, to_date('01/03/2025 12:00:00', 'DD/MM/YYYY HH:MI:SS'),
+        to_date('15/03/2025 12:00:00', 'DD/MM/YYYY HH:MI:SS'), 15, '03', '1000692908',
+        to_date('21/03/2025 03:11:42', 'DD/MM/YYYY HH:MI:SS'), to_date('01/09/2023', 'DD/MM/YYYY'),
+        2023087523, '12');
+Insert into VLRES_LQDCION (VLQ_NMRO_SLCTUD, VLQ_TPO_LQDCION, VLQ_PRDO, VLQ_SERIE, VLQ_RAM_CDGO, VLQ_CDGO_AMPRO,
+                           VLQ_CNCPTO_VLOR, VLQ_USER, VLQ_VLOR, VLQ_VLOR_ORGNAL, VLQ_FCHA_MDFCCION, VLQ_ORGEN,
+                           VLQ_DSCRPCION)
+values (10261454, '04', '032025', 6, '12', '01', 'REAI', '1072423330', 69226.67, 69226.67,
+        to_date('18/03/2025 12:32:20', 'DD/MM/YYYY HH:MI:SS'), 'C', null);
+*/
+-- Consulta de parametro PERIODO SAI
+SELECT PAR_RFRNCIA FROM PRMTROS WHERE PAR_CDGO='1' AND PAR_MDLO='6' AND PAR_VLOR1=1;
+select * from FCHAS_PGO where FPG_FCHA_PGO >= TO_DATE('01/01/2025','DD/MM/YYYY') AND TIPO_CIERRE='A';
+SELECT * FROM PLZAS where POL_NMRO_PLZA = 11003;
+select * from lqdcnes where LQD_NMRO_SLCTUD   = 10261454 AND LQD_TPO_LQDCION = '04' AND LQD_PRDO = '032025';
+select * from lqdcnes_dtlle where lqt_nmro_slctud  = 10261454 AND LQT_TPO_LQDCION = '04' AND LQT_PRDO = '032025';
+select * from vlres_lqdcion where VLQ_NMRO_SLCTUD = 10261454 AND VLQ_TPO_LQDCION = '04' AND VLQ_PRDO = '032025';
+
+SELECT * FROM pgos_efctdos_snstros WHERE PES_NMRO_SNSTRO = 2023087523 and PES_FCHA_PGO >= TO_DATE('21/02/2025','DD/MM/YYYY');
+select * from PGOS_SNSTROS where PGS_NMRO_PLZA = 11003 and PGS_FCHA_PGO >= TO_DATE('21/02/2025','DD/MM/YYYY');
+
+select A.SNA_ESTDO_PGO, SNA_ESTDO_SNSTRO, A.SNA_FCHA_ULTMO_PGO, A.*
+from AVSOS_SNSTROS A
+where --A.SNA_NMRO_ITEM = 10261454 AND
+   A.SNA_NMRO_SNSTRO = 2023087523
+  AND A.SNA_CAUSA_SNSTRO = '01'
+  AND A.SNA_NMRO_PLZA = 11003;
+
+SELECT LQT_SERIE,
+       LQT_NMRO_DIAS,
+       LQT_FCHA_DSDE,
+       LQT_FCHA_HSTA,
+       LQT_TPO_LQDCION,
+       LQT_PRDO,
+       SNA_POLIZA_SIMON,
+       LQD_FCHA_PGO
+FROM LQDCNES_DTLLE, LQDCNES, AVSOS_SNSTROS
+WHERE LQT_NMRO_SNSTRO = 2023087523
+  AND LQT_RAM_CDGO = 12
+  AND LQT_FCHA_MRA = TO_DATE('01/09/2023','DD/MM/YYYY')
+  AND LQT_ESTDO_LQDCION = '01'
+  AND LQD_NMRO_SLCTUD = 10261454
+  AND LQD_TPO_LQDCION = LQT_TPO_LQDCION
+  AND LQD_NMRO_SLCTUD = LQT_NMRO_SLCTUD
+  AND LQD_PRDO = LQT_PRDO
+  AND LQD_FCHA_PGO = TO_DATE('21/03/2025','DD/MM/YYYY')
+  AND LQT_NMRO_SLCTUD = SNA_NMRO_ITEM
+  AND LQT_FCHA_MRA    = SNA_FCHA_SNSTRO;
+
+/*
+ Las solicitudes aseguradas se encuentran en las tablas RSGOS_VGNTES
+ Las solicitudes retiradas del seguro se encuentran en las tablas RSGOS_RCBOS y
+ la trazabilidad de cuando se hizo la novedad de retiro está en la tabla RSGOS_RCBOS_NVDAD
+ por tipo de novedad '02'-Retiro del seguro
+ */
+SELECT * FROM RSGOS_VGNTES where RVI_NMRO_PLZA = 1995;
+SELECT * FROM RSGOS_RCBOS R WHERE R.RIR_NMRO_PLZA = 1995;
+SELECT * FROM RSGOS_VGNTES_NVDDES WHERE RIVN_NMRO_PLZA=1995;
+SELECT * FROM RSGOS_RCBOS_NVDAD WHERE REN_NMRO_PLZA = 1995;
+----TABLAS DE MODIFICACIONES DESDE SIMON TRONADOR HACIA SAI (AQUI PUEEN VENIR LOS AUMENTO CAMBIOS EN EL SEGURO ETC......)
+SELECT * FROM RSGOS_VGNTES R WHERE R.RVI_NMRO_ITEM IN (7612528) ORDER BY RVI_NMRO_ITEM, RVI_FCHA_MDFCCION ASC;
+SELECT * FROM RSGOS_VGNTES_VLRES R WHERE R.RVV_NMRO_ITEM IN (7612528) ORDER BY RVV_NMRO_ITEM,RVV_FCHA_MDFCCION ASC ;
+SELECT * FROM RSGOS_VGNTES_AMPRO A WHERE A.RVA_NMRO_ITEM IN (7612528) ORDER BY RVA_NMRO_ITEM, RVA_FCHA_MDFCCION ASC;
+SELECT * FROM RSGOS_VGNTES_AVLOR A WHERE A.RVL_NMRO_ITEM IN (7612528) ORDER BY RVL_NMRO_ITEM, RVL_FCHA_MDFCCION asc;
+SELECT * FROM RSGOS_VGNTES_NVDDES WHERE RIVN_NMRO_ITEM IN (7612528) ORDER BY RIVN_NMRO_ITEM, RIVN_FCHA_NVDAD asc;
+SELECT * FROM RSGOS_VGNTES_NVLOR WHERE RVNV_NMRO_ITEM IN (7612528) ORDER BY RVNV_NMRO_ITEM, RVNV_FCHA_NVDAD asc;
+SELECT * FROM RSGOS_RCBOS R WHERE R.RIR_NMRO_ITEM = 7612528;
+SELECT * FROM RSGOS_RCBOS_VLRES R WHERE R.RVV_NMRO_ITEM=10143329;
+SELECT * FROM RSGOS_RCBOS_AMPRO A WHERE A.RVA_NMRO_ITEM=10143329 AND RVA_CDGO_AMPRO='01';
+SELECT * FROM RSGOS_VGNTES_AVLOR A WHERE A.RVL_NMRO_ITEM=10143329 AND RVL_CDGO_AMPRO='01';
+SELECT * FROM RSGOS_VGNTES_NVDDES WHERE RIVN_NMRO_ITEM=10143329 AND RIVN_CDGO_AMPRO='01';
+SELECT * FROM RSGOS_VGNTES_NVLOR WHERE RVNV_NMRO_ITEM=10143329 AND RVNV_CDGO_AMPRO='01';
+SELECT * FROM AMPROS_SNSTROS where AMS_NMRO_ITEM = 7612528;
+SELECT * FROM RSGOS_RCBOS_NVDAD WHERE REN_NMRO_ITEM = 11465009;
+
+select A.SNA_ESTDO_PGO, SNA_ESTDO_SNSTRO, A.*
+from AVSOS_SNSTROS A
+where A.SNA_NMRO_ITEM = 10261454
+  AND A.SNA_NMRO_SNSTRO = 2023087523
+  AND A.SNA_CAUSA_SNSTRO = '01'
+  AND A.SNA_NMRO_PLZA = 11003;
+
+
+SELECT *
+FROM AVSOS_SNSTROS, AMPROS_SNSTROS, PLZAS
+WHERE --SNA_NMRO_ITEM = 10220059
+  --AND TRUNC(SNA_FCHA_SNSTRO) = TO_DATE('01/10/2023', 'DD/MM/YYYY') --P_FECHA_MORA
+    POL_NMRO_PLZA = 145466
+  AND SNA_NMRO_SNSTRO = AMS_NMRO_SNSTRO
+  AND SNA_NMRO_PLZA = POL_NMRO_PLZA;
+-----TABLA DE AUMENTOS DE SEGURO
+SELECT * FROM AMNTOS_SNSTROS A WHERE A.AMN_SLCTUD=7541338;
+
+SELECT * FROM COBERTURAS_SIMON WHERE NUM_SECU_POL=29807458069;
+SELECT * FROM COBERTURAS_SIMON WHERE NUM_SECU_POL=29789229764;
+
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_SNSTRO = 2025028054;
+SELECT * FROM PLZAS where POL_POLIZA_SIMON = 5010002075302;
+
+-- Consulta de parametro PERIODO SAI
+SELECT PAR_RFRNCIA FROM PRMTROS WHERE PAR_CDGO='1' AND PAR_MDLO='6' AND PAR_VLOR1=1;
+select * from FCHAS_PGO where FPG_FCHA_PGO >= TO_DATE('01/04/2025','DD/MM/YYYY') AND TIPO_CIERRE='A';
+SELECT * FROM PLZAS where POL_NMRO_PLZA = 11003;
+---- ESTADOS SNA_ESTDO_SNSTRO SNA_ESTDO_PGO
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_ITEM = 10261454;
+----CAMPOS IMPORTANTES PARA QUE LA PROCESE EL CIERRE LQD_FCHA_PGO Y LQD_PRDO
+select * from lqdcnes where LQD_NMRO_SLCTUD   = 10261454 AND LQD_TPO_LQDCION = '04' AND LQD_PRDO = '02025';
+----LQT_ESTDO_LQDCION : 01 - VIGENTE, 02 - SUSPENDIDA, 03 - PROCESADA
+select * from lqdcnes_dtlle where lqt_nmro_slctud  = 10261454 AND LQT_TPO_LQDCION = '04' AND LQT_PRDO = '032025';
+select * from vlres_lqdcion where VLQ_NMRO_SLCTUD = 10261454 AND VLQ_TPO_LQDCION = '04' AND VLQ_PRDO = '032025';
+SELECT * FROM pgos_efctdos_snstros WHERE PES_NMRO_SNSTRO = 2023087523;
+select * from PGOS_SNSTROS where PGS_NMRO_PLZA = 11003 and PGS_FCHA_PGO >= TO_DATE('21/03/2025','DD/MM/YYYY');
+SELECT * FROM ADMSISA.VLRES_PGO_EFCTDOS WHERE VPE_NMRO_SNSTRO = 2023087523;
+
+-----HITORICO DE MOVIMIENTOS
+select * from vlres_lqdcion_bk where VLQ_NMRO_SLCTUD = 10261454
+----TIPO DE POLIZAS POL_TPOPLZA : C-COLECTIVA | I-INDIVIDUAL | P-COPROPIEDADES(CUOTAS AL DIA)
+---- ESTADO DE LA POLIZA POL_ESTADO_PLZA
+SELECT *
+FROM PLZAS
+where POL_NMRO_PLZA in (select SNA_NMRO_PLZA from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_SNSTRO = 2023087523);
+
+SELECT *
+FROM RCBOS_CJA
+WHERE rcc_nmro_rcbo = 505329071;
+
+select * from ADMSISA.AVSOS_SNSTROS where SNA_NMRO_SNSTRO = 505329071;
+
+select *
+from a5021113
+where num_liquidacion = 505329071;
+
+select * from LIQUIDACIONES_OBLIGACION where NUMERO_LIQUIDACION = 505329071;
+
+select *
+from OBLIGACIONES_PAGAR
+where SECUENCIA = (select SECUENCIA from LIQUIDACIONES_OBLIGACION where NUMERO_LIQUIDACION = 505329071);
+
+select * from DDAS_PLZAS where DDP_NMRO_SLCTUD = 10301855;
+
+SELECT LENGTH(PK_TERCEROS.F_NOMBRES(P.POL_PRS_NMRO_IDNTFCCION,P.POL_PRS_TPO_IDNTFCCION))
+FROM PLZAS P
+WHERE P.POL_NMRO_PLZA = 138484;
+SELECT PK_TERCEROS.F_NOMBRES(P.POL_PRS_NMRO_IDNTFCCION,P.POL_PRS_TPO_IDNTFCCION) texto
+FROM PLZAS P
+WHERE P.POL_NMRO_PLZA = 138484;
+
+select * from BITCRAS_LLMDAS;
+
+SELECT P.EMAIL
+FROM USRIOS P,ROLES_USRIOS T
+WHERE T.RUS_CDGO_ROL = '12' AND P.USR_CDGO_USRIO = T.RUS_CDGO_USRIO;
+
+SELECT LENGTH(LISTAGG(P.EMAIL, ',') WITHIN GROUP (ORDER BY P.EMAIL)) AS TOTAL_CARACTERES
+FROM USRIOS P
+         JOIN ROLES_USRIOS T ON P.USR_CDGO_USRIO = T.RUS_CDGO_USRIO
+WHERE T.RUS_CDGO_ROL = '12';
+
+
+SELECT 'RCBOS_CJA insertados:' as TABLA, COUNT(*) as REGISTROS
+FROM RCBOS_CJA
+WHERE RCC_NMRO_RCBO IN (505329071, 505329072, 505329073)
+UNION ALL
+SELECT 'DDAS_PLZAS insertados:', COUNT(*)
+FROM DDAS_PLZAS
+WHERE DDP_NMRO_SLCTUD IN (10301855, 10301856, 10301857);
+
+-- Verificar recibo principal
+SELECT RCC_NMRO_RCBO, RCC_CIA_CDGO, RCC_VLOR_RCBO, RCC_TXTO
+FROM RCBOS_CJA
+WHERE RCC_NMRO_RCBO = 505329071;
+
+-- Verificar deudas relacionadas
+SELECT *
+FROM DDAS_PLZAS
+WHERE DDP_NMRO_SLCTUD IN (10301855, 10301856, 10301857)
+ORDER BY DDP_NMRO_SLCTUD;
+
+select A.SNA_ESTDO_PGO, SNA_ESTDO_SNSTRO, A.SNA_FCHA_ULTMO_PGO, A.*
+from AVSOS_SNSTROS A
+where A.SNA_NMRO_ITEM IN (10937150, 10900892);
+
+select *
+from SIM_CARGA_SINIESTROS
+WHERE NUM_POL1 IN (5010001115604, 5010001115603, 5010001115602);
+
+select *
+from SIM_CARGA_SINIESTROS_HI
+WHERE NUM_POL1 IN (5010001115604, 5010001115603, 5010001115602);
+
+
+SELECT *
+FROM PGOS_EFCTDOS_SNSTROS,
+     PLZAS,
+     AVSOS_SNSTROS
+WHERE PES_NMRO_PLZA = POL_NMRO_PLZA
+  AND POL_TPOPLZA = 'I'
+  AND NVL(PES_VLOR_PGDO, 0) > 0
+  AND NVL(POL_POLIZA_SIMON, 0) != 0
+  AND SNA_NMRO_SNSTRO = PES_NMRO_SNSTRO
+  AND SNA_NMRO_ITEM = 7345020
+  AND NOT EXISTS ( SELECT 'X'
+                   FROM SIM_CARGA_LIQUIDACIONES
+                   WHERE NUM_SINI = SNA_SNSTRO_SIMON
+                     AND FECHA_PAGO = TO_DATE('22-08-2025', 'DD-MM-YYYY'))
+  AND NOT EXISTS (SELECT 'X'
+                  FROM SIM_CARGA_SINIESTROS B
+                  WHERE B.SECUENCIA IN (SELECT X.SECUENCIA_CAR_SINI
+                                        FROM SIM_CARGA_VAR_SINIESTROS A
+                                                 JOIN(SELECT A.SECUENCIA_CAR_SINI,
+                                                             A.COD_CAMPO AS COD_CMPO2,
+                                                             A.VALOR_CAMPO AS VLOR_CMPO2
+                                                      FROM SIM_CARGA_VAR_SINIESTROS A
+                                                      WHERE (A.COD_CAMPO = 'FECHA_PAGO'
+                                                          AND (A.VALOR_CAMPO = TO_char(TO_DATE(TO_DATE('22-08-2025', 'DD-MM-YYYY')),'DD-MON-YY')
+                                                              OR A.VALOR_CAMPO = TO_char(TO_DATE(TO_DATE('22-08-2025', 'DD-MM-YYYY')),'DD/MM/YY'))))X
+                                                     ON X.SECUENCIA_CAR_SINI = A.SECUENCIA_CAR_SINI
+                                        WHERE A.COD_CAMPO = 'CONS_SAI'
+                                          AND  A.VALOR_CAMPO = PES_NMRO_SNSTRO))
+  AND PES_FCHA_PGO = TO_DATE('22-08-2025', 'DD-MM-YYYY');
+
+select * from PGOS_SNSTROS where PGS_NMRO_PLZA = 11003 and PGS_FCHA_PGO >= TO_DATE('01/08/2025','DD/MM/YYYY');
+SELECT PAR_RFRNCIA FROM PRMTROS WHERE PAR_DSCRPCION='USER_CARGUE_SIMON';
+
+select *
+from SIM_CARGA_SINIESTROS
+WHERE NUM_POL1 IN (5010001250704);
+
+SELECT *
+FROM POLIZAS_SIMON
+WHERE COD_CIA = 3
+  AND COD_SECC = 37
+  AND COD_RAMO = 486
+  AND ESTADO_CARGUE_SIMON = 'C' -- LISTO PARA PASAR A SAI
+  AND ESTADO_CARGUE_SAI IS NULL -- PENDIENTE DE CARGUE - T - CARGUE TERMINADO
+ORDER BY SECUENCIA;
+
+----TIPOS DE MOVIMIENTO INTERFACE TRONADOR SAI
+--TIPO_MOVIMIENTO = 1-- NUEVO NEGOCIO
+--TIPO_MOVIMIENTO = 2-- REHABILITACION
+--TIPO_MOVIMIENTO = 3-- RENOVACION
+--TIPO_MOVIMIENTO = 4-- CANCELACION
+select *
+from polizas_simon t
+where substr(t.poliza_simon, 0, 11) in (50100022942);
+
+select *
+from polizas_simon t
+where t.poliza_simon = 5010002294202;
+
+
+UPDATE POLIZAS_SIMON
+SET ESTADO_CARGUE_SAI = null
+where TIPO_MOVIMIENTO = '3'
+  and SECUENCIA = 86304
+  and NUM_SECU_POL = 29828220078
+  and POLIZA_SIMON = 5010002294202;
+UPDATE POLIZAS_SIMON
+SET ESTADO_CARGUE_SAI = null
+where TIPO_MOVIMIENTO = '2'
+  and SECUENCIA = 86945
+  and NUM_SECU_POL = 29828220078
+  and POLIZA_SIMON = 5010002294202;
+
+
+select *
+from a2000030 t
+where substr(t.num_pol1, 0, 11) in (50100022942)
+  and cod_secc = 37;
+
+SELECT *
+FROM SIM_CARGA_ERRORES
+WHERE SECUENCIA_ORIGEN in (69269);
+
+select distinct substr(e.erp_error,1,300), e.erp_codigo, e.erp_dpb_ejecucion,e.erp_dpb_cod_proceso, p.prp_nombre_param, p.prp_valor, e.*
+from errores_proceso_batch e,detalle_procesos_batch d, Parametros_Proceso_Batch p
+where  e.erp_dpb_ejecucion= d.dpb_ejecucion
+  and e.erp_dpb_ejecucion= p.prp_dpb_ejecucion
+  and e.erp_dpb_cod_proceso = p.prp_dpb_cod_proceso
+  and d.dpb_objeto ='PRC_EXPEDICION_SIMON'
+  and e.erp_error like '%50100022882%';
+
+select distinct substr(e.erp_error,1,300), e.erp_codigo, e.erp_dpb_ejecucion,e.erp_dpb_cod_proceso, p.prp_nombre_param, p.prp_valor, e.*
+from errores_proceso_batch e,detalle_procesos_batch d, Parametros_Proceso_Batch p
+where  e.erp_dpb_ejecucion= d.dpb_ejecucion
+  and e.erp_dpb_ejecucion= p.prp_dpb_ejecucion
+  and e.erp_dpb_cod_proceso = p.prp_dpb_cod_proceso
+  and d.dpb_objeto ='PRC_EXPEDICION_SIMON'
+  and e.erp_error like '%50100022942%';
+
+
+SELECT * FROM PLZAS WHERE POL_NMRO_PLZA = 145486;
+
+SELECT owner, trigger_name, table_name
+FROM all_triggers
+WHERE owner = 'ADMSISA'
+  AND trigger_name LIKE '%RGOS_RCBOS%';
+
+SELECT TIPO_MOVIMIENTO
+FROM POLIZAS_SIMON P
+WHERE P.COD_CIA = 3
+  AND P.COD_SECC = 37
+  AND P.COD_RAMO = 486
+  AND P.ESTADO_CARGUE_SIMON = 'C'
+  AND P.ESTADO_CARGUE_SAI IS NULL
+  AND P.SOLICITUD = 11146511
+  AND P.SECUENCIA =
+      (SELECT MAX(A.SECUENCIA)
+       FROM POLIZAS_SIMON A
+       WHERE A.POLIZA_SIMON = P.POLIZA_SIMON);
+
+
+
+SELECT * FROM POLIZAS_SIMON WHERE TIPO_MOVIMIENTO = '3' AND TIPO_POLIZA = 'I';
+
+SELECT * FROM POLIZAS_SIMON WHERE substr(poliza_simon, 0, 11) in (50100000057);
+
+SELECT P.SECUENCIA,
+       P.ESTADO_CARGUE_SAI
+FROM POLIZAS_SIMON P
+WHERE P.COD_CIA = 3
+  AND P.COD_SECC = 37
+  AND P.COD_RAMO = 486
+  AND P.ESTADO_CARGUE_SIMON IN ('C','A')
+  AND P.ESTADO_CARGUE_SAI IS NOT NULL
+  AND P.POLIZA_SIMON LIKE '50100022942' || '%'
+  AND P.FECHA_CREACION IN ( SELECT MAX(A.FECHA_CREACION)
+                            FROM POLIZAS_SIMON A
+                            WHERE A.COD_CIA = 3
+                              AND A.COD_SECC = 37
+                              AND A.COD_RAMO = 486
+                              AND A.ESTADO_CARGUE_SIMON IN ('C','A')
+                              AND A.ESTADO_CARGUE_SAI IS NOT NULL
+                              AND A.POLIZA_SIMON LIKE '50100022942' || '%');
+
+
+select *
+from polizas_simon t
+where substr(t.poliza_simon, 0, 11) in (50100022640);
+
+
+select distinct substr(e.erp_error,1,300), e.erp_codigo, e.erp_dpb_ejecucion,e.erp_dpb_cod_proceso, p.prp_nombre_param, p.prp_valor, e.*
+from errores_proceso_batch e,detalle_procesos_batch d, Parametros_Proceso_Batch p
+where  e.erp_dpb_ejecucion= d.dpb_ejecucion
+  and e.erp_dpb_ejecucion= p.prp_dpb_ejecucion
+  and e.erp_dpb_cod_proceso = p.prp_dpb_cod_proceso
+  and d.dpb_objeto ='PRC_EXPEDICION_SIMON'
+  and e.erp_error like '%50100022942%';
+
+select distinct substr(e.erp_error,1,300), e.erp_codigo, e.erp_dpb_ejecucion,e.erp_dpb_cod_proceso, p.prp_nombre_param, p.prp_valor, e.*
+from errores_proceso_batch e,detalle_procesos_batch d, Parametros_Proceso_Batch p
+where  e.erp_dpb_ejecucion= d.dpb_ejecucion
+  and e.erp_dpb_ejecucion= p.prp_dpb_ejecucion
+  and e.erp_dpb_cod_proceso = p.prp_dpb_cod_proceso
+  and d.dpb_objeto ='PRC_EXPEDICION_SIMON'
+  and e.erp_error like '%50100023037%';
+select *
+from polizas_simon t
+where substr(t.poliza_simon, 0, 11) in (50100023037);
+
+
+select *
+from polizas_simon t
+where T.FECHA_CREACION >= TO_DATE('22-01-2024', 'DD-MM-YYYY'); ---substr(t.poliza_simon, 0, 11) in (50100022942);
+
+select *
+from polizas_simon t
+where substr(t.poliza_simon, 0, 11) in (50100022942);
+
+SELECT MIN(TIPO_MOVIMIENTO)
+FROM POLIZAS_SIMON P
+WHERE P.COD_CIA = 3
+  AND P.COD_SECC = 37
+  AND P.COD_RAMO = 486
+  AND P.ESTADO_CARGUE_SIMON = 'C'
+  -- AND P.ESTADO_CARGUE_SAI IS NULL
+  AND (P.FECHA_CARGUE = TRUNC(SYSDATE) OR P.FECHA_CARGUE IS NULL)
+  AND P.SOLICITUD = 11146511
+
+SELECT TIPO_MOVIMIENTO
+FROM POLIZAS_SIMON P
+WHERE P.COD_CIA = 3
+  AND P.COD_SECC = 37
+  AND P.COD_RAMO = 486
+  AND P.ESTADO_CARGUE_SIMON = 'C'
+  -- AND P.ESTADO_CARGUE_SAI IS NULL
+  AND (P.FECHA_CARGUE = TRUNC(SYSDATE) OR P.FECHA_CARGUE IS NULL)
+  AND P.SOLICITUD = 11146511
+  AND P.SECUENCIA IN
+      (SELECT MIN(A.SECUENCIA)
+       FROM POLIZAS_SIMON A
+       WHERE A.COD_CIA = 3
+         AND A.COD_SECC = 37
+         AND A.COD_RAMO = 486
+         AND A.ESTADO_CARGUE_SIMON = 'C'
+         -- AND A.ESTADO_CARGUE_SAI IS NULL
+         AND (A.FECHA_CARGUE = TRUNC(SYSDATE) OR A.FECHA_CARGUE IS NULL)
+         AND A.SOLICITUD = 11146511);
+
+select *
+from polizas_simon t WHERE T.FECHA_CARGUE IS NULL;
+----'Y'
+
+SELECT *
+FROM POLIZAS_SIMON
+WHERE COD_CIA = 3
+  AND COD_SECC = 37
+  AND COD_RAMO = 486
+  AND ESTADO_CARGUE_SIMON = 'C' -- LISTO PARA PASAR A SAI
+  AND ESTADO_CARGUE_SAI IS NULL
+
+SELECT * FROM COBERTURAS_SIMON WHERE NUM_SECU_POL in (29828220078, 29828220079);
+
+select distinct substr(e.erp_error,1,300), e.erp_codigo, e.erp_dpb_ejecucion,e.erp_dpb_cod_proceso, p.prp_nombre_param, p.prp_valor, e.*
+from errores_proceso_batch e,detalle_procesos_batch d, Parametros_Proceso_Batch p
+where  e.erp_dpb_ejecucion= d.dpb_ejecucion
+  and e.erp_dpb_ejecucion= p.prp_dpb_ejecucion
+  and e.erp_dpb_cod_proceso = p.prp_dpb_cod_proceso
+  -- and d.dpb_objeto ='PRC_EXPEDICION_SIMON'
+  and e.erp_error like '%5010002376101%';
+
+
+-----ESTADOS DE CARGUE DE SOLICITUDES DE SIMON A SAI
+--ESTADO_CARGUE_SIMON is 'Estado de envio de la información de Simón I. Inserta registro C. Disponible para cargue en SAI. E Elimino en Simon Registro, A Actualizo Simon Registro'
+--ESTADO_CARGUE_SAI is 'Estado de proceso de la información en SAI E=ERROR C=CARGADO P=PROCESADO'
+SELECT * FROM POLIZAS_SIMON
+WHERE POLIZA_SIMON IN (5010002563801);
+
+SELECT *
+FROM COBERTURAS_SIMON
+WHERE NUM_SECU_POL = 29820697177;
+
+SELECT * FROM POLIZAS_SIMON where ESTADO_CARGUE_SAI is null;
+
+select distinct substr(e.erp_error,1,300), e.erp_codigo, e.erp_dpb_ejecucion,e.erp_dpb_cod_proceso, p.prp_nombre_param, p.prp_valor, e.*
+from errores_proceso_batch e,detalle_procesos_batch d, Parametros_Proceso_Batch p
+where  e.erp_dpb_ejecucion= d.dpb_ejecucion
+  and e.erp_dpb_ejecucion= p.prp_dpb_ejecucion
+  and e.erp_dpb_cod_proceso = p.prp_dpb_cod_proceso
+  -- and d.dpb_objeto ='PRC_EXPEDICION_SIMON'
+  and e.erp_error like '%50100025638%'
+ORDER BY ERP_FECHA_CREA DESC;
+
+select *
+from PLZAS
+where POL_NMRO_SLCTUD IN (7460532, 7679589, 7651704, 7096179, 10729874, 10874390, 7611439)
+
+
+SELECT * -- SUM(vlq_vlor * lqt_nmro_dias) Total_siniestros
+FROM lqdcnes, lqdcnes_dtlle, vlres_lqdcion, avsos_snstros
+WHERE lqd_nmro_slctud = 5085913
+--  AND lqd_fcha_pgo = TO_DATE('28/05/25', 'DD/MM/YY')  -- :lqd_fcha_pgo
+  AND lqd_nmro_slctud = lqt_nmro_slctud
+  AND lqd_tpo_lqdcion = lqt_tpo_lqdcion
+  AND lqd_prdo = lqt_prdo
+  AND lqt_nmro_snstro = sna_nmro_snstro
+  AND sna_estdo_snstro NOT IN ('04','06')
+  AND lqt_nmro_slctud = vlq_nmro_slctud
+  AND lqt_tpo_lqdcion = vlq_tpo_lqdcion
+  AND lqt_prdo = vlq_prdo
+  AND lqt_serie = vlq_serie
+  AND vlq_cncpto_vlor IN ('01','02');
+
+SELECT * -- SUM(vlq_vlor * lqt_nmro_dias) Total_siniestros
+FROM lqdcnes, lqdcnes_dtlle, vlres_lqdcion, avsos_snstros
+WHERE lqd_nmro_slctud = 5085917
+--  AND lqd_fcha_pgo = TO_DATE('28/05/25', 'DD/MM/YY')  -- :lqd_fcha_pgo
+  AND lqd_nmro_slctud = lqt_nmro_slctud
+  AND lqd_tpo_lqdcion = lqt_tpo_lqdcion
+  AND lqd_prdo = lqt_prdo
+  AND lqt_nmro_snstro = sna_nmro_snstro
+  AND sna_estdo_snstro NOT IN ('04','06')
+  AND lqt_nmro_slctud = vlq_nmro_slctud
+  AND lqt_tpo_lqdcion = vlq_tpo_lqdcion
+  AND lqt_prdo = vlq_prdo
+  AND lqt_serie = vlq_serie
+  AND vlq_cncpto_vlor IN ('01','02');
+
+SELECT * FROM avsos_snstros WHERE SNA_ESTDO_SNSTRO = '02' AND SNA_ESTDO_PGO = '01';
+
+SELECT  * FROM TMP_REP_SNSTROS WHERE SNA_NMRO_ITEM= 10242376;
+
+select *
+from intrfaz_cntble
+where INC_CNTA_CNTBLE = '419535005'
+and INC_FCHA_CNTBLE between to_date('01/11/2022', 'dd/mm/yyyy') and to_date('31/12/2022', 'dd/mm/yyyy');
+
+select sum(INC_CRDTO)
+from intrfaz_cntble
+where INC_CNTA_CNTBLE = '419535005'
+and INC_FCHA_CNTBLE between to_date('01/11/2022', 'dd/mm/yyyy') and to_date('31/12/2022', 'dd/mm/yyyy');
+
+----PROMOTORES-----
+select * from PRMTRES_INMBLRIA where PIN_NMRO_PLZA = 10160;
+
+select *
+from rsgos_vgntes r
+where r.RVI_NMRO_ITEM = 108403275;
+select * from SLCTDES_ESTDIOS where SES_NMRO_PLZA in (10160);
+
+select * from admsisa.UBCCION_SLCTDES where UBS_FCHA_ENTRGA > to_date('15/01/2026', 'dd/mm/yyyy');
+
+select *
+from PLZAS
+where POL_NMRO_PLZA = 10160;
+
+select *
+from registro_pagos_davivienda r
+where r.talon in (109702044, 702044, 852885);
+
+lida yeni
+viviana paez
+
+select * from vlres_lqdcion where VLQ_NMRO_SLCTUD = 11194703;
+----recuados
+select *
+from rcbos_cja r
+where r.rcc_nmro_rcbo = 505104849;
+select *
+from DTLLES_RCBOS_CJA r
+where r.drc_nmro_rcbo = 505104849;
+select * from CNCPTOS_DTLLE_RCBOS
+where CDR_NMRO_RCBO = 505104849;
+select *
+from rlcion_rcbos_cja r
+where r.RLR_NMRO_RCBO = 505104849;
