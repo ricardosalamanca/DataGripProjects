@@ -57,11 +57,36 @@ SELECT id_simlogws, codigows, tipo_proceso,
     SELECT *
   FROM sim_log_webservices where ID_SIMLOGWS in (36713141,36713142,36713144);
 
+SELECT TO_CHAR(fecha,'YYYY-MM-DD HH24:MI:SS') AS fecha,
+       paso, lerror, nsp_ppal, nsp_hija, cod_ramo, mensaje
+  FROM sim_cu_logexpedicion
+ WHERE fecha >= SYSDATE - 2/24          -- últimas 2 horas
+  -- AND lerror IN ('CT_REGLA','CT_RESUMEN','ENTRA_REALES',
+                --  'PASO_A_REALES','FALLA_GRABA_PPAL',
+                --  'FALLA_GRABA_HIJA','EXCEPCION')
+ ORDER BY fecha DESC;
+
+SELECT TRUNC(fecha) AS dia,
+       nsp_hija,
+       COUNT(*)     AS duplicados
+  FROM sim_cu_logexpedicion
+ WHERE lerror = 'DUPLICADO_ASYNC'
+   AND fecha >= SYSDATE - 7
+ GROUP BY TRUNC(fecha), nsp_hija
+ ORDER BY dia DESC, duplicados DESC;
+
+select *
+from SIM_CU_ASYNC_PAYLOAD
+order by ID_PAYLOAD desc FETCH FIRST 20 ROWS ONLY;
+
+SELECT *
+FROM SIM_CU_ASYNC_ESTADO
+order by ID_PROCESO desc FETCH FIRST 20 ROWS ONLY;
 -- A. Las ultimas corridas del endoso
 --    FECHA_FINAL en NULL = la corrida nunca termino (sesion muerta)
 SELECT *
   FROM sim_log_webservices
- WHERE TO_CHAR(tipo_proceso) in ('endosoCU','emisionCumplimiento', 'emisionPrincipal','emisionRC','convertirCotizacionPpal','convertirCotizacionRC')
+ WHERE TO_CHAR(tipo_proceso) in ('endosoCU','endosoRC','emisionCumplimiento', 'emisionPrincipal','emisionRC','convertirCotizacionPpal','convertirCotizacionRC')
  ORDER BY fecha_inicio DESC
  FETCH FIRST 20 ROWS ONLY;
 
@@ -159,22 +184,23 @@ order by ID_PROCESO desc FETCH FIRST 20 ROWS ONLY;
    WHERE job_name LIKE 'JOB_END_ASYNC%'
    ORDER BY log_date DESC FETCH FIRST 5 ROWS ONLY;
 
-select * from a2010030 where NUM_POL1 = 1020112680401;
+select * from a2010030 where NUM_POL1 = 1001106779701;
 select * from a2000030 where NUM_POL_FLOT = 1020112680401;
+select * from a2000030 where NUM_POL1 = 1020112680401;
 
-select * from a2010030 where NUM_SECU_POL = 29713422234;
-select * from a2000030 where NUM_SECU_POL = 29713422265;
+select * from a2010030 where NUM_SECU_POL = 29850054704;
+select * from a2000030 where NUM_SECU_POL = 29850054704;
 
 select * from a2010020 where NUM_SECU_POL = 39745423320;
-select * from a2000020 where NUM_SECU_POL = 39745423321;
+select * from a2000020 where NUM_SECU_POL = 29850054704;
 select * from x2000020 where NUM_SECU_POL = 39745423321;
 select * from SIM_TEXTOS_POLIZAS where num_secu_pol in (39745423613, 39745423614);
 
 select * from a2010040 where NUM_SECU_POL = 39745423579;
-select * from a2000040 where NUM_SECU_POL = 39745423580;
+select * from a2000040 where NUM_SECU_POL = 29850054704;
 select * from a2000040 where NUM_SECU_POL = 39745423579;
 
-select * from A2000160 where NUM_SECU_POL = 39745412672;
+select * from A2000160 where NUM_SECU_POL = 29850054704;
 
 select * from sim_riesgo_poliza where NUM_SECU_POL = 39745411898;
     ---1.colocar los datos varible enel archivo de shei ok

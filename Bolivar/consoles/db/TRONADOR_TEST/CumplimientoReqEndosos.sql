@@ -38,6 +38,13 @@ WHERE TO_CHAR(tipo_proceso) in ('endosoCU','emisionCumplimiento', 'emisionPrinci
  ORDER BY fecha_inicio DESC
  FETCH FIRST 20 ROWS ONLY;
 
+SELECT *
+  FROM sim_log_webservices
+  --WHERE TO_CHAR(tipo_proceso) like '%emisi%'
+WHERE TO_CHAR(tipo_proceso) in ('convertirCotizacionPpal','convertirCotizacionRC')
+ ORDER BY fecha_inicio DESC
+ FETCH FIRST 20 ROWS ONLY;
+
 -- B. El JSON completo de UNA corrida
 SELECT objeto_entrada
   FROM sim_log_webservices
@@ -117,9 +124,14 @@ SELECT TO_CHAR(fecha,'YYYY-MM-DD HH24:MI:SS') AS fecha,
                 --  'FALLA_GRABA_HIJA','EXCEPCION')
  ORDER BY fecha DESC;
 
+select * from A2000260 where NUM_SECU_POL = 29846718151;
+select * from A2000260 where NUM_SECU_POL = 29846718155;
+
+select * from SIM_TEXTOS_POLIZAS where NUM_SECU_POL = 29846718151;
+select * from SIM_TEXTOS_POLIZAS where NUM_SECU_POL = 29846718155;
 
 select * from a2010030 where NUM_POL1 = 2000134528201;
-select * from a2000030 where NUM_POL1 = 1000101786801;
+select * from a2000030 where NUM_POL1 = 1001106779701;
 select * from a2000030 where NUM_POL1 = 1000172772601;
 select * from a2000030 where NUM_POL1 = 10001017;
 select * from a2000030 where NUM_POL_FLOT = 2000134528201;
@@ -128,7 +140,7 @@ select * from a2000030 where NUM_POL_COTIZ = 1563136562301;
 select * from a2000030 where NUM_POL_COTIZ = 1000172772601;
 
 select * from a2010030 where NUM_SECU_POL = 29846702480;
-select * from a2000030 where NUM_SECU_POL = 29846702481;
+select * from a2000030 where NUM_SECU_POL = 29846718151;
 
 select * from a2010020 where NUM_SECU_POL = 29846702480;
 select * from a2000020 where NUM_SECU_POL = 29846702481;
