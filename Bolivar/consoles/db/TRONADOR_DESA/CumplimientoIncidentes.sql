@@ -1825,7 +1825,7 @@ select p.num_secu_pol,
        p.cod_mon_per,
        p.*
 from a2010030 p
-where p.num_pol1 = 1020112891601
+where p.num_pol1 = 1010115747701
   and p.cod_secc = 4;
 
 ------POLIZA HIJA

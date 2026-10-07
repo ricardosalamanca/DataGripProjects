@@ -31,10 +31,18 @@ select *
 SELECT *
   FROM sim_log_webservices where ID_SIMLOGWS = 36713141;
 
+select *
+from SIM_CU_ASYNC_PAYLOAD
+order by ID_PAYLOAD desc FETCH FIRST 20 ROWS ONLY;
+
+SELECT *
+FROM SIM_CU_ASYNC_ESTADO
+order by ID_PROCESO desc FETCH FIRST 20 ROWS ONLY;
+
 SELECT *
   FROM sim_log_webservices
   --WHERE TO_CHAR(tipo_proceso) like '%emisi%'
-WHERE TO_CHAR(tipo_proceso) in ('endosoCU','emisionCumplimiento', 'emisionPrincipal','emisionRC','convertirCotizacionPpal','convertirCotizacionRC')
+WHERE TO_CHAR(tipo_proceso) in ('endosoCU','endosoRC','emisionCumplimiento', 'emisionPrincipal','emisionRC','convertirCotizacionPpal','convertirCotizacionRC')
  ORDER BY fecha_inicio DESC
  FETCH FIRST 20 ROWS ONLY;
 
@@ -57,11 +65,10 @@ SELECT objeto_entrada
                        WHERE TO_CHAR(tipo_proceso) = 'endosoCU');
 
 -- D. El JSON de una POLIZA concreta
-SELECT id_simlogws, TO_CHAR(fecha_inicio,'HH24:MI:SS') ini,
-       resultado, objeto_entrada
+SELECT *
   FROM sim_log_webservices
  WHERE TO_CHAR(tipo_proceso) = 'endosoCU'
-   AND codigows LIKE 'endosoCU:POL:1000171653401:%'
+   AND codigows LIKE 'endosoCU:POL:2000134528201:%'
  ORDER BY fecha_inicio DESC;
 
 -- E. Las que FALLARON o quedaron colgadas
@@ -142,8 +149,8 @@ select * from a2000030 where NUM_POL_COTIZ = 1000172772601;
 select * from a2010030 where NUM_SECU_POL = 29846702480;
 select * from a2000030 where NUM_SECU_POL = 29846718151;
 
-select * from a2010020 where NUM_SECU_POL = 29846702480;
-select * from a2000020 where NUM_SECU_POL = 29846702481;
+select * from a2010020 where NUM_SECU_POL = 29789349319;
+select * from a2000020 where NUM_SECU_POL = 29789349320;
 
 SELECT * FROM SIM_RIESGO_POLIZA
  WHERE num_secu_pol = 29846583127
@@ -153,7 +160,9 @@ SELECT * FROM SIM_RIESGO_POLIZA
 select * from a2010040 where NUM_SECU_POL = 29789349319;
 select * from a2000040 where NUM_SECU_POL = 29789349320;
 
-select * from A2000160 where NUM_SECU_POL = 39745412672;
+select * from A2000160 where NUM_SECU_POL = 29846725745;
+
+select * from A2990700 where NUM_SECU_POL = 29846725745;
 
 
 -- 1. COBERTURAS HIJA  (la nueva: SUMA_ASEG = END_SUMA_ASEG, PRIMA_COB = END_PRIMA_COB)
